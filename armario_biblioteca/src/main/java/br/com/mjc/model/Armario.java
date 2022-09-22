@@ -1,6 +1,17 @@
 package br.com.mjc.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "tb_armario")
 public class Armario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+    private Integer id;
+
+    @Column(name = "ra", unique = true, nullable = false)
     private String numero;
     private boolean ativo;
     private String observacao;

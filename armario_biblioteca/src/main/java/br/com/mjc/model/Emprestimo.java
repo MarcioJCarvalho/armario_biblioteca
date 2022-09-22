@@ -14,7 +14,12 @@ public class Emprestimo {
 
     private Date dataHoraDevolucao;
     private Date dataHoraEmprestimo;
+    @ManyToOne
+    @JoinColumn(name = "estudante_id")
     private Estudante estudante;
+
+    @ManyToOne
+    @JoinColumn(name = "armario_id")
     private Armario armario;
 
     public Emprestimo() {
