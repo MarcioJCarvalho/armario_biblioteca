@@ -1,26 +1,43 @@
 package br.com.mjc.model;
 
 import java.sql.Date;
+import javax.persistence.*;
 
-public class Reserva {
+@Entity
+@Table(name = "tb_emprestimo")
+public class Emprestimo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+    private Integer id;
+
     private Date dataHoraDevolucao;
     private Date dataHoraEmprestimo;
     private Estudante estudante;
     private Armario armario;
 
-
-    public Reserva() {
+    public Emprestimo() {
     }
 
-    public Reserva(Date dataHoraDevolucao, Date dataHoraEmprestimo, Estudante estudante, Armario armario) {
+    public Emprestimo(Integer id, Date dataHoraDevolucao, Date dataHoraEmprestimo, Estudante estudante, Armario armario) {
+        this.id = id;
         this.dataHoraDevolucao = dataHoraDevolucao;
         this.dataHoraEmprestimo = dataHoraEmprestimo;
         this.estudante = estudante;
         this.armario = armario;
-    }      
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Date getDataHoraDevolucao() {
-        return this.dataHoraDevolucao;
+        return dataHoraDevolucao;
     }
 
     public void setDataHoraDevolucao(Date dataHoraDevolucao) {
@@ -28,7 +45,7 @@ public class Reserva {
     }
 
     public Date getDataHoraEmprestimo() {
-        return this.dataHoraEmprestimo;
+        return dataHoraEmprestimo;
     }
 
     public void setDataHoraEmprestimo(Date dataHoraEmprestimo) {
@@ -43,13 +60,14 @@ public class Reserva {
         this.estudante = estudante;
     }
 
-
     public Armario getArmario() {
-        return this.armario;
+        return armario;
     }
 
     public void setArmario(Armario armario) {
         this.armario = armario;
     }
+
+    
     
 }
