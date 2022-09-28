@@ -6,7 +6,7 @@ import br.com.mjc.model.Emprestimo;
 import java.util.List;
 
 public class EmprestimoService {
-    private static EmprestimoDao dao = new EmprestimoDaoImpl();
+    private static EmprestimoDaoImpl dao = new EmprestimoDaoImpl();
     
     public static List<Emprestimo> buscarTodos(){
         return dao.buscarTodos();

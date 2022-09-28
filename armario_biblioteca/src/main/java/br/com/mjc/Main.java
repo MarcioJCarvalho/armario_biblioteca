@@ -1,6 +1,4 @@
 package br.com.mjc;
-
-import br.com.mjc.connection.HibernateUtil;
 import br.com.mjc.model.Armario;
 import br.com.mjc.model.Emprestimo;
 import br.com.mjc.service.EmprestimoService;
@@ -14,27 +12,21 @@ import javax.persistence.Persistence;
 public class Main {
 
     public static void main(String[] args) {
-//        MainMenuUI mainMenuUI = new MainMenuUI();
-//        mainMenuUI.setVisible(true);
+        MainMenuUI mainMenuUI = new MainMenuUI();
+        mainMenuUI.setVisible(true);
 
-        // testando a conexão com o banco
-//        private String numero;
-//        private boolean ativo;
-//        private String observacao;
-
-        Armario a1 = new Armario("01", true, "");
-        Armario a2 = new Armario("02", true, "");
-        Armario a3 = new Armario("03", true, "");
-
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
-        EntityManager em = emf.createEntityManager();
-
-        em.getTransaction().begin();
-        em.persist(a1);
-        em.persist(a2);
-        em.persist(a3);
-        em.getTransaction().commit();
-        System.out.println("Pronto!");
-
+//        Armario a1 = new Armario("01", true, "");
+//        Armario a2 = new Armario("02", true, "");
+//        Armario a3 = new Armario("03", true, "");
+//
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
+//        EntityManager em = emf.createEntityManager();
+//
+//        em.getTransaction().begin();
+//        em.persist(a1);
+//        em.persist(a2);
+//        em.persist(a3);
+//        em.getTransaction().commit();
+//        System.out.println("Pronto!");
     }
 }
