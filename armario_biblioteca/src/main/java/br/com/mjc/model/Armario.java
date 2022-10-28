@@ -1,62 +1,27 @@
 package br.com.mjc.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "tb_armario")
 public class Armario {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "ra", unique = true, nullable = false)
+    @Column(name = "numero", unique = true, nullable = false)
     private String numero;
-    
+    @Column(columnDefinition = "bit default 1", nullable = false)
     private boolean ativo;
     
-    @Column
+    @Column(length = 250)
     private String observacao;
-
-
-    public Armario() {
-    }
-
-
-    public Armario(String numero, boolean ativo, String observacao) {
-        this.numero = numero;
-        this.ativo = ativo;
-        this.observacao = observacao;
-    }
-
-
-    public String getNumero() {
-        return this.numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public boolean isAtivo() {
-        return this.ativo;
-    }
-
-    public boolean getAtivo() {
-        return this.ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
-
-    public String getObservacao() {
-        return this.observacao;
-    }
-
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
-
 }
