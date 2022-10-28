@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import javax.persistence.*;
 
 @Data
@@ -19,22 +20,27 @@ public class Pessoa {
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
 
-    @Column(name = "nome", unique = true, nullable = false, length = 100)
+    @Column(name = "nome", nullable = false, length = 100)
     private String nome;
 
     @Column(name = "email", unique = true, nullable = false, length = 100)
     private String email;
 
-    @Column(name = "telefone", unique = true, nullable = false, length = 14)
+    @Column(name = "telefone", nullable = false, length = 14)
     private String telefone;
 
-    @Column(name = "senha", unique = true, nullable = false, length = 64)
+    @Column(name = "senha", nullable = false, length = 64)
     private String senha;
 
-    @Column(name = "ativo", unique = true, nullable = false, length = 1)
+    @Column(name = "ativo", columnDefinition = "bit default 1", nullable = false)
     private boolean ativo;
     
-    private Date dataAtualizacao;
+    @Column(name = "data_atualizacao")
+    private LocalDateTime dataAtualizacao = LocalDateTime.now();
     
-    private Date dataCriacao;
+    @Column(name = "data_criacao")
+    private LocalDateTime dataCriacao = LocalDateTime.now();
 }
+
+// para criação de constraints
+//@Table(uniqueConstraints = { @UniqueConstraint(name = "UniqueNumberAndStatus", columnNames = { "personNumber", "isActive" }) })

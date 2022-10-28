@@ -1,10 +1,13 @@
 package br.com.mjc.view;
 
 import br.com.mjc.controller.BibliotecarioLoginController;
+import br.com.mjc.controller.LoginController;
+
 import javax.swing.JOptionPane;
 
 public class AdmLoginUI extends javax.swing.JFrame {
 
+    private LoginController loginController;
     public AdmLoginUI() {
         initComponents();
         initComplements();
@@ -111,7 +114,7 @@ public class AdmLoginUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Logado com sucesso!
         String senha = new String(txtSenha.getPassword());
-        if (!BibliotecarioLoginController.logar(txtSiape.getText(), senha).equals("Logado com sucesso!")) {
+        if (!loginController.logar(txtSiape.getText(), senha).equals("Logado com sucesso!")) {
             JOptionPane.showMessageDialog(null, BibliotecarioLoginController.logar(txtSiape.getText(), senha), "Erro!", JOptionPane.ERROR_MESSAGE);
         }else{
             new AdmMenuUI().setVisible(true);

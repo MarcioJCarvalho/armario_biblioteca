@@ -1,8 +1,8 @@
 package br.com.mjc.controller;
-import br.com.mjc.service.LoginService;
+import br.com.mjc.service.LoginServiceImpl;
 
 public class LoginController {
-    public static String auth(String email, String senha) {
-        return LoginService.loginCheck(email, senha);
+    public String logar(String email, String senha) {
+        return LoginServiceImpl.logar(email, senha);
     }
 }
