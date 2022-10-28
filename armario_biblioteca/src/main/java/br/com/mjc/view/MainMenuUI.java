@@ -153,8 +153,6 @@ public class MainMenuUI extends javax.swing.JFrame {
                 .addGap(75, 75, 75))
         );
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("D:\\Projetos\\armario_biblioteca\\armario_biblioteca\\src\\main\\java\\br\\com\\mjc\\Assets\\img.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(

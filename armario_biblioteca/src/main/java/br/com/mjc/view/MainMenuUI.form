@@ -250,11 +250,6 @@
           </SubComponents>
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel4">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Projetos\armario_biblioteca\armario_biblioteca\src\main\java\br\com\mjc\Assets\img.png"/>
-            </Property>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

@@ -13,7 +13,10 @@ public class Armario {
 
     @Column(name = "ra", unique = true, nullable = false)
     private String numero;
+    
     private boolean ativo;
+    
+    @Column
     private String observacao;
 
 
