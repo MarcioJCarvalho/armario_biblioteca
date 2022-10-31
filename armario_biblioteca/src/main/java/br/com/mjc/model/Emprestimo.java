@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tb_emprestimo")
 public class Emprestimo {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
@@ -31,5 +30,4 @@ public class Emprestimo {
     @ManyToOne
     @JoinColumn(name = "armario_id")
     private Armario armario;
-    
 }

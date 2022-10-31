@@ -1,18 +1,18 @@
 package br.com.mjc.view;
 
-import br.com.mjc.controller.BibliotecarioLoginController;
-import br.com.mjc.controller.LoginController;
+import br.com.mjc.controller.AdminController;
+import br.com.mjc.dto.AdminDTO;
+import br.com.mjc.enums.Retorno;
 
 import javax.swing.JOptionPane;
 
 public class AdmLoginUI extends javax.swing.JFrame {
-
-    private LoginController loginController;
+    private AdminController adminController;
     public AdmLoginUI() {
         initComponents();
         initComplements();
     }
-    
+
     private void initComplements(){
         this.setLocationRelativeTo(null);
     }
@@ -112,16 +112,27 @@ public class AdmLoginUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //Logado com sucesso!
         String senha = new String(txtSenha.getPassword());
-        if (!loginController.logar(txtSiape.getText(), senha).equals("Logado com sucesso!")) {
-            JOptionPane.showMessageDialog(null, BibliotecarioLoginController.logar(txtSiape.getText(), senha), "Erro!", JOptionPane.ERROR_MESSAGE);
-        }else{
+
+        AdminDTO adminDTO = new AdminDTO();
+        adminDTO.setSenha(senha);
+        adminDTO.setEmail(txtSiape.getText());
+        adminController.logar(adminDTO);
+        if(adminController.logar(adminDTO).getStatus().equals("SUCESSO")){
             new AdmMenuUI().setVisible(true);
             new AdmLoginUI().setVisible(false);
             new MainMenuUI().setVisible(false);
-            dispose(); 
+            dispose();
         }
+
+//        if (adminController.logar(adminDTO) != null) {
+//            JOptionPane.showMessageDialog(null, adminController.logar(txtSiape.getText(), senha), "Erro!", JOptionPane.ERROR_MESSAGE);
+//        }else{
+//            new AdmMenuUI().setVisible(true);
+//            new AdmLoginUI().setVisible(false);
+//            new MainMenuUI().setVisible(false);
+//            dispose();
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnBibliotecarioLoginCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBibliotecarioLoginCancelarActionPerformed

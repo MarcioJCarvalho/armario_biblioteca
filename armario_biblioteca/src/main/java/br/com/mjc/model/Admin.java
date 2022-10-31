@@ -10,19 +10,16 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tb_armario")
-public class Armario {
+@Table(name = "tb_admin", uniqueConstraints = { @UniqueConstraint(name = "admin_unique", columnNames = {"nome", "cpf"})})
+public class Admin extends Pessoa{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    @Column(name = "numero", unique = true, nullable = false)
-    private String numero;
+    @Column(name ="nome", nullable = false, length = 100)
+    private String nome;
 
-    @Column(name="ativo", nullable = false)
-    private boolean ativo = true;
-    
-    @Column(name = "observacao", length = 250)
-    private String observacao;
+    @Column(name ="cpf", unique = true, nullable = false, length = 15)
+    private String cpf;
 }
