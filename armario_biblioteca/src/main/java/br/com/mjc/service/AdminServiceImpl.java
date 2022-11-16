@@ -7,6 +7,9 @@ import br.com.mjc.model.Admin;
 
 public class AdminServiceImpl implements AdminService {
     private AdminDAOImpl adminDAOImpl;
+    public AdminServiceImpl(){
+        adminDAOImpl = new AdminDAOImpl();
+    }
     public InfoDTO logar(AdminDTO adminDTO){
         Admin admin = new Admin();
         admin.setSenha(adminDTO.getSenha());

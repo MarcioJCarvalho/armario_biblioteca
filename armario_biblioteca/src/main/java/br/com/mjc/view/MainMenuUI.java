@@ -1,4 +1,5 @@
 package br.com.mjc.view;
+import br.com.mjc.view.login.AdmLoginUI;
 import br.com.mjc.controller.EmprestimoController;
 import javax.swing.JOptionPane;
 
@@ -30,7 +31,7 @@ public class MainMenuUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("IFKey");
+        setTitle("MenuPrincipal");
         setName("frame"); // NOI18N
         setUndecorated(true);
         setResizable(false);

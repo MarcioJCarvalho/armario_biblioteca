@@ -1,29 +1,41 @@
 package br.com.mjc.dao;
 
+import br.com.mjc.conexao.Conexao;
 import br.com.mjc.dto.InfoDTO;
-import br.com.mjc.enums.Retorno;
+import br.com.mjc.enums.Mensagem;
 import br.com.mjc.model.Admin;
 
-import javax.swing.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class AdminDAOImpl implements AdminDAO {
-    private ConexaoDAO conexaoDAO;
-
     @Override
     public InfoDTO logar(Admin admin) {
         InfoDTO infoDTO = new InfoDTO();
         try {
-            conexaoDAO.getEntityManager().getTransaction().begin();
-            conexaoDAO.getEntityManager().getProperties().get(admin.getEmail());
-            conexaoDAO.getEntityManager().getProperties().get(admin.getSenha());
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
+            EntityManager em = emf.createEntityManager();;
 
-//            admin.setEmail(adminDTO.getEmail());
-//            admin.setSenha(adminDTO.getSenha());
-//            Admin adminLogado = (Admin) conexaoDAO.getEntityManager().getTransaction().getClass();
-            conexaoDAO.getEntityManager().getTransaction().commit();
-            infoDTO.setStatus(String.valueOf(Retorno.SUCESSO));
+            em.getTransaction().begin();
+
+            Admin adminLogado = (Admin) em.createQuery(
+                    "SELECT a from Admin a where a.email LIKE :email and a.senha = :senha")
+                    .setParameter("email", admin.getEmail())
+                    .setParameter("senha", admin.getSenha()).getSingleResult();
+
+            em.getTransaction().commit();
+            infoDTO.setObject(adminLogado);
+            infoDTO.setStatus(String.valueOf(Mensagem.SUCESSO));
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "AdminDAO: " + erro, "Erro!", JOptionPane.ERROR_MESSAGE);
+//            conexao.conectar().close();
+            if (infoDTO.getObject() == null){
+                infoDTO.setMensagem("Usuário ou senha inválido!");
+                infoDTO.setStatus(String.valueOf(Mensagem.ERRO));
+            } else {
+                infoDTO.setStatus(String.valueOf(Mensagem.FALHA));
+                infoDTO.setMensagem("Houve um problema ao tentar se conectar com o servidor!");
+            }
         }
         return infoDTO;
     }

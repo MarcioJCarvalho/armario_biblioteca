@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class InfoDTO<T> {
     private T object;
     private String status;
+    private String mensagem;
 }

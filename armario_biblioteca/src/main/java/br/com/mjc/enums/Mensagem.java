@@ -1,6 +1,6 @@
 package br.com.mjc.enums;
 
-public enum Retorno {
+public enum Mensagem {
     SUCESSO,
     OK,
     FALHA,

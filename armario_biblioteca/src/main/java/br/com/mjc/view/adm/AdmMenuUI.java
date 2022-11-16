@@ -1,4 +1,4 @@
-package br.com.mjc.view;
+package br.com.mjc.view.adm;
 public class AdmMenuUI extends javax.swing.JFrame {
     public AdmMenuUI() {
         initComponents();
