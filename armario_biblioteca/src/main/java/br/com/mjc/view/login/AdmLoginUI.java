@@ -39,7 +39,7 @@ public class AdmLoginUI extends javax.swing.JFrame {
         titleLogin.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 14)); // NOI18N
         titleLogin.setText("LOGIN");
 
-        labelUsuario.setText("Usuário ou Siape:");
+        labelUsuario.setText("E-mail ou Siape:");
 
         labelSenha.setText("Senha:");
 
@@ -64,20 +64,18 @@ public class AdmLoginUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelUsuario)
-                    .addComponent(txtUsuario)
-                    .addComponent(labelSenha)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
-                .addContainerGap(144, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(titleLogin)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(labelUsuario)
+                        .addComponent(txtUsuario)
+                        .addComponent(labelSenha)
+                        .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
+                    .addComponent(titleLogin))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -112,7 +110,7 @@ public class AdmLoginUI extends javax.swing.JFrame {
 
         infoDTO = adminController.logar(adminDTO);
 
-        if(infoDTO.getStatus().equals(Status.SUCESSO.toString())){
+        if(infoDTO.getStatus().equals(Status.SUCESSO)){
             new MainMenuUI().setVisible(false);
             new AdmLoginUI().setVisible(false);
             new MenuAdministrativoUI().setVisible(true);

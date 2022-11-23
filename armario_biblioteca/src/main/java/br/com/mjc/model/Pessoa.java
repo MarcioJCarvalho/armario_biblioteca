@@ -23,8 +23,8 @@ public class Pessoa{
     @Column(name = "senha", nullable = false, length = 64)
     private String senha;
 
-    @Column(name ="avito", nullable = false)
-    private Boolean ativo = true;
+    @Column(name ="avito", nullable = false, columnDefinition = "bit default 1")
+    private Boolean ativo;
 
     @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao = LocalDateTime.now();

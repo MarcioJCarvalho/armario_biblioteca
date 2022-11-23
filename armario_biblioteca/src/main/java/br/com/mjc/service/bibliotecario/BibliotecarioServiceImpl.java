@@ -4,6 +4,7 @@ import br.com.mjc.dao.bibliotecario.BibliotecarioDAOImpl;
 import br.com.mjc.dto.BibliotecarioDTO;
 import br.com.mjc.dto.InfoDTO;
 import br.com.mjc.model.Bibliotecario;
+import java.time.LocalDateTime;
 
 import java.util.List;
 
@@ -27,6 +28,11 @@ public class BibliotecarioServiceImpl implements BibliotecarioService{
         bibliotecario.setEmail(bibliotecarioDTO.getEmail());
         bibliotecario.setCpf(bibliotecarioDTO.getCpf());
         bibliotecario.setSiape(bibliotecarioDTO.getSiape());
+        bibliotecario.setTelefone(bibliotecarioDTO.getTelefone());
+        bibliotecario.setSenha(bibliotecarioDTO.getSenha());
+        bibliotecario.setAtivo(Boolean.TRUE);
+        bibliotecario.setDataAtualizacao(LocalDateTime.now());
+        bibliotecario.setDataCriacao(LocalDateTime.now());
         return bibliotecarioDAOImpl.cadastrar(bibliotecario);
     }
 
