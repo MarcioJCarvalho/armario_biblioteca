@@ -4,6 +4,9 @@
  */
 package br.com.mjc.view.adm;
 
+import br.com.mjc.controller.BibliotecarioController;
+import br.com.mjc.dto.BibliotecarioDTO;
+import br.com.mjc.dto.InfoDTO;
 import br.com.mjc.view.MainMenuUI;
 import javax.swing.JOptionPane;
 
@@ -12,6 +15,8 @@ import javax.swing.JOptionPane;
  * @author moska
  */
 public class MenuAdministrativoUI extends javax.swing.JFrame {
+
+    private BibliotecarioController bibliotecarioController;
 
     /**
      * Creates new form MenuAdministrativoUI
@@ -22,6 +27,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         radioGrupo.add(radioNome);
         radioGrupo.add(radioSiape);
+        bibliotecarioController = new BibliotecarioController();
     }
 
     /**
@@ -560,7 +566,11 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_radioSiapeActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        BibliotecarioDTO bibliotecarioDTO = new BibliotecarioDTO();
+        InfoDTO infoDTO;
+        bibliotecarioDTO.setNome(txtNome.getText());
+        bibliotecarioDTO.setEmail(txtEmail.getText());
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
 

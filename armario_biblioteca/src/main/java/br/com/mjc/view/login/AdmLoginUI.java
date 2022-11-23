@@ -105,7 +105,7 @@ public class AdmLoginUI extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         AdminDTO adminDTO = new AdminDTO();
-        InfoDTO infoDTO = new InfoDTO();
+        InfoDTO infoDTO;
         String senha = new String(txtSenha.getPassword());
         adminDTO.setSenha(senha);
         adminDTO.setEmail(txtUsuario.getText());
@@ -118,7 +118,7 @@ public class AdmLoginUI extends javax.swing.JFrame {
             new MenuAdministrativoUI().setVisible(true);
             dispose();
         } else {
-            JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus(), JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
