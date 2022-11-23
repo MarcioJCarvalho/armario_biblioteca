@@ -1,6 +1,6 @@
 package br.com.mjc.enums;
 
-public enum Mensagem {
+public enum Status {
     SUCESSO,
     OK,
     FALHA,

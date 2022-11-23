@@ -1,6 +1,6 @@
 package br.com.mjc.service;
 
-import br.com.mjc.dao.AdminDAOImpl;
+import br.com.mjc.dao.admin.AdminDAOImpl;
 import br.com.mjc.dto.AdminDTO;
 import br.com.mjc.dto.InfoDTO;
 import br.com.mjc.model.Admin;

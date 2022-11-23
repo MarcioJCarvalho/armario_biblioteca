@@ -108,7 +108,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         );
         headerEmprestimoLayout.setVerticalGroup(
             headerEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 35, Short.MAX_VALUE)
+            .addGap(0, 46, Short.MAX_VALUE)
         );
 
         jPanel2.add(headerEmprestimo, java.awt.BorderLayout.PAGE_START);
@@ -296,6 +296,11 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         jPanel12.setLayout(new java.awt.BorderLayout());
 
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
 
@@ -381,13 +386,11 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel14Layout.createSequentialGroup()
-                                .addComponent(labelSenha)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(labelSenha)
                             .addComponent(txtSenha)
                             .addGroup(jPanel14Layout.createSequentialGroup()
                                 .addComponent(labelConfirmarSenha)
-                                .addGap(0, 91, Short.MAX_VALUE))
+                                .addGap(0, 81, Short.MAX_VALUE))
                             .addComponent(txtConfirmarSenha))))
                 .addContainerGap())
         );
@@ -555,6 +558,10 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     private void radioSiapeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSiapeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioSiapeActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

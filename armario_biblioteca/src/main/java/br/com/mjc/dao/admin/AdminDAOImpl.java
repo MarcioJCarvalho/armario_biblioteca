@@ -1,8 +1,8 @@
-package br.com.mjc.dao;
+package br.com.mjc.dao.admin;
 
-import br.com.mjc.conexao.Conexao;
+
 import br.com.mjc.dto.InfoDTO;
-import br.com.mjc.enums.Mensagem;
+import br.com.mjc.enums.Status;
 import br.com.mjc.model.Admin;
 
 import javax.persistence.EntityManager;
@@ -13,9 +13,9 @@ public class AdminDAOImpl implements AdminDAO {
     @Override
     public InfoDTO logar(Admin admin) {
         InfoDTO infoDTO = new InfoDTO();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
+        EntityManager em = emf.createEntityManager();
         try {
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
-            EntityManager em = emf.createEntityManager();;
 
             em.getTransaction().begin();
 
@@ -26,14 +26,13 @@ public class AdminDAOImpl implements AdminDAO {
 
             em.getTransaction().commit();
             infoDTO.setObject(adminLogado);
-            infoDTO.setStatus(String.valueOf(Mensagem.SUCESSO));
+            infoDTO.setStatus(Status.SUCESSO);
         } catch (Exception erro) {
-//            conexao.conectar().close();
             if (infoDTO.getObject() == null){
                 infoDTO.setMensagem("Usuário ou senha inválido!");
-                infoDTO.setStatus(String.valueOf(Mensagem.ERRO));
+                infoDTO.setStatus(Status.ERRO);
             } else {
-                infoDTO.setStatus(String.valueOf(Mensagem.FALHA));
+                infoDTO.setStatus(Status.FALHA);
                 infoDTO.setMensagem("Houve um problema ao tentar se conectar com o servidor!");
             }
         }

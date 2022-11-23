@@ -3,8 +3,7 @@ package br.com.mjc.view.login;
 import br.com.mjc.controller.AdminController;
 import br.com.mjc.dto.AdminDTO;
 import br.com.mjc.dto.InfoDTO;
-import br.com.mjc.enums.Mensagem;
-import br.com.mjc.view.adm.AdmMenuUI;
+import br.com.mjc.enums.Status;
 import br.com.mjc.view.MainMenuUI;
 import br.com.mjc.view.adm.MenuAdministrativoUI;
 
@@ -113,7 +112,7 @@ public class AdmLoginUI extends javax.swing.JFrame {
 
         infoDTO = adminController.logar(adminDTO);
 
-        if(infoDTO.getStatus().equals(Mensagem.SUCESSO.toString())){
+        if(infoDTO.getStatus().equals(Status.SUCESSO.toString())){
             new MainMenuUI().setVisible(false);
             new AdmLoginUI().setVisible(false);
             new MenuAdministrativoUI().setVisible(true);
