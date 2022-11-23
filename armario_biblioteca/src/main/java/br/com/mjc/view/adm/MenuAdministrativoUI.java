@@ -344,7 +344,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         labelDDD.setText("DDD:");
 
-        labelTelefone.setText("Telefone:");
+        labelNumero.setText("Telefone:");
 
         titleDadosBibliotecario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         titleDadosBibliotecario.setText("Dados do Bibliotecário");
@@ -580,11 +580,22 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.ERROR_MESSAGE);
             return;
         }
+
         bibliotecarioDTO.setNome(txtNome.getText());
         bibliotecarioDTO.setEmail(txtEmail.getText());
         bibliotecarioDTO.setCpf(txtCpf.getText());
         bibliotecarioDTO.setSiape(txtSiape.getText());
         bibliotecarioDTO.setTelefone(txtDDD.getText() + txtTelefone.getText());
+        bibliotecarioDTO.setCpf(txtCpf.getText());
+        bibliotecarioDTO.setSiape(txtSiape.getText());
+        bibliotecarioDTO.setTelefone(txtDDD.getText() + txtTelefone.getText());
+
+        infoDTO = bibliotecarioController.cadastar(bibliotecarioDTO);
+        if(infoDTO.getStatus().equals(Status.SUCESSO)){
+            JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.OK_CANCEL_OPTION);
+        } else {
+            JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.ERROR_MESSAGE);
+        }
 
         infoDTO = bibliotecarioController.cadastar(bibliotecarioDTO);
         if (infoDTO.getStatus().equals(Status.SUCESSO)) {
