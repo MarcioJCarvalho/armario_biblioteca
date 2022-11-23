@@ -35,6 +35,7 @@ public class AdminDAOImpl implements AdminDAO {
                 infoDTO.setStatus(Status.FALHA);
                 infoDTO.setMensagem("Houve um problema ao tentar se conectar com o servidor!");
             }
+            em.close();
         }
         return infoDTO;
     }

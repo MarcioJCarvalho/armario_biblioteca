@@ -7,6 +7,8 @@ package br.com.mjc.view.adm;
 import br.com.mjc.controller.BibliotecarioController;
 import br.com.mjc.dto.BibliotecarioDTO;
 import br.com.mjc.dto.InfoDTO;
+import br.com.mjc.enums.Status;
+import br.com.mjc.utils.Validador;
 import br.com.mjc.view.MainMenuUI;
 import javax.swing.JOptionPane;
 
@@ -76,18 +78,18 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         titleContato = new javax.swing.JLabel();
         labelDDD = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        labelNumero = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtDDD = new javax.swing.JTextField();
+        labelTelefone = new javax.swing.JLabel();
+        txtTelefone = new javax.swing.JTextField();
         titleDadosBibliotecario = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        labelCpf = new javax.swing.JLabel();
+        txtCpf = new javax.swing.JTextField();
         labelSiape = new javax.swing.JLabel();
         txtSiape = new javax.swing.JTextField();
         labelSenha = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         labelConfirmarSenha = new javax.swing.JLabel();
-        txtConfirmarSenha = new javax.swing.JPasswordField();
+        txtConfirmacaoSenha = new javax.swing.JPasswordField();
         jPanel4 = new javax.swing.JPanel();
         heaerEstudante = new javax.swing.JPanel();
         bodyEstudante = new javax.swing.JPanel();
@@ -110,7 +112,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         headerEmprestimo.setLayout(headerEmprestimoLayout);
         headerEmprestimoLayout.setHorizontalGroup(
             headerEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 686, Short.MAX_VALUE)
+            .addGap(0, 693, Short.MAX_VALUE)
         );
         headerEmprestimoLayout.setVerticalGroup(
             headerEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,7 +253,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 681, Short.MAX_VALUE)
+            .addGap(0, 693, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,7 +266,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 681, Short.MAX_VALUE)
+            .addGap(0, 693, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,7 +317,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(263, Short.MAX_VALUE)
+                .addContainerGap(267, Short.MAX_VALUE)
                 .addComponent(btnCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalvar)
@@ -342,12 +344,12 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         labelDDD.setText("DDD:");
 
-        labelNumero.setText("Telefone:");
+        labelTelefone.setText("Telefone:");
 
         titleDadosBibliotecario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         titleDadosBibliotecario.setText("Dados do Bibliotecário");
 
-        jLabel2.setText("CPF:");
+        labelCpf.setText("CPF:");
 
         labelSiape.setText("Siape:");
 
@@ -355,9 +357,9 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         labelConfirmarSenha.setText("Confirmar Senha:");
 
-        txtConfirmarSenha.addActionListener(new java.awt.event.ActionListener() {
+        txtConfirmacaoSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtConfirmarSenhaActionPerformed(evt);
+                txtConfirmacaoSenhaActionPerformed(evt);
             }
         });
 
@@ -377,27 +379,28 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
                             .addGroup(jPanel14Layout.createSequentialGroup()
                                 .addComponent(labelDDD)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(labelNumero)
+                                .addComponent(labelTelefone)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(labelEmail)
                             .addComponent(titleDadosBibliotecario)
                             .addComponent(labelNome)
-                            .addComponent(labelSiape)
                             .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtSiape, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jLabel2))
+                                .addComponent(txtCpf, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(labelCpf)
+                            .addComponent(labelSiape))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelSenha)
-                            .addComponent(txtSenha)
+                            .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                            .addComponent(txtConfirmacaoSenha)
                             .addGroup(jPanel14Layout.createSequentialGroup()
-                                .addComponent(labelConfirmarSenha)
-                                .addGap(0, 81, Short.MAX_VALUE))
-                            .addComponent(txtConfirmarSenha))))
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelConfirmarSenha)
+                                    .addComponent(labelSenha))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
@@ -411,20 +414,20 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(labelCpf)
                     .addComponent(labelSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSiape)
                     .addComponent(labelConfirmarSenha))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSiape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtConfirmacaoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -436,9 +439,9 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDDD)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNumero)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTelefone)
+                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -460,7 +463,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         heaerEstudante.setLayout(heaerEstudanteLayout);
         heaerEstudanteLayout.setHorizontalGroup(
             heaerEstudanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 686, Short.MAX_VALUE)
+            .addGap(0, 693, Short.MAX_VALUE)
         );
         heaerEstudanteLayout.setVerticalGroup(
             heaerEstudanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,7 +476,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         bodyEstudante.setLayout(bodyEstudanteLayout);
         bodyEstudanteLayout.setHorizontalGroup(
             bodyEstudanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 686, Short.MAX_VALUE)
+            .addGap(0, 693, Short.MAX_VALUE)
         );
         bodyEstudanteLayout.setVerticalGroup(
             bodyEstudanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -490,7 +493,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         headerArmario.setLayout(headerArmarioLayout);
         headerArmarioLayout.setHorizontalGroup(
             headerArmarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 686, Short.MAX_VALUE)
+            .addGap(0, 693, Short.MAX_VALUE)
         );
         headerArmarioLayout.setVerticalGroup(
             headerArmarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,7 +506,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         bodyArmario.setLayout(bodyArmarioLayout);
         bodyArmarioLayout.setHorizontalGroup(
             bodyArmarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 686, Short.MAX_VALUE)
+            .addGap(0, 693, Short.MAX_VALUE)
         );
         bodyArmarioLayout.setVerticalGroup(
             bodyArmarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -547,9 +550,9 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_sairActionPerformed
 
-    private void txtConfirmarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmarSenhaActionPerformed
+    private void txtConfirmacaoSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmacaoSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtConfirmarSenhaActionPerformed
+    }//GEN-LAST:event_txtConfirmacaoSenhaActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         if (radioNome.isSelected()) {
@@ -567,9 +570,27 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         BibliotecarioDTO bibliotecarioDTO = new BibliotecarioDTO();
-        InfoDTO infoDTO;
+        InfoDTO infoDTO = new InfoDTO();
+        String senha = new String(txtSenha.getPassword()); 
+        String confirmacaoSenha = new String(txtConfirmacaoSenha.getPassword());
+        infoDTO = Validador.confirmarSenha(senha, confirmacaoSenha);
+        if(infoDTO.getStatus().equals(Status.SUCESSO)){
+            bibliotecarioDTO.setSenha(infoDTO.getObject().toString());
+        } else {
+            JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.ERROR_MESSAGE);
+        }
         bibliotecarioDTO.setNome(txtNome.getText());
         bibliotecarioDTO.setEmail(txtEmail.getText());
+        bibliotecarioDTO.setCpf(txtCpf.getText());
+        bibliotecarioDTO.setSiape(txtSiape.getText());
+        bibliotecarioDTO.setTelefone(txtDDD.getText() + txtTelefone.getText());
+        
+        infoDTO = bibliotecarioController.cadastar(bibliotecarioDTO);
+        if(infoDTO.getStatus().equals(Status.SUCESSO)){
+            JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.OK_CANCEL_OPTION);
+        } else {
+            JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -587,7 +608,6 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     private javax.swing.JPanel headerArmario;
     private javax.swing.JPanel headerEmprestimo;
     private javax.swing.JPanel heaerEstudante;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -611,16 +631,14 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel labelConfirmarSenha;
+    private javax.swing.JLabel labelCpf;
     private javax.swing.JLabel labelDDD;
     private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelNome;
-    private javax.swing.JLabel labelNumero;
     private javax.swing.JLabel labelSenha;
     private javax.swing.JLabel labelSiape;
+    private javax.swing.JLabel labelTelefone;
     private javax.swing.ButtonGroup radioGrupo;
     private javax.swing.JRadioButton radioNome;
     private javax.swing.JRadioButton radioSiape;
@@ -628,11 +646,14 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tab;
     private javax.swing.JLabel titleContato;
     private javax.swing.JLabel titleDadosBibliotecario;
-    private javax.swing.JPasswordField txtConfirmarSenha;
+    private javax.swing.JPasswordField txtConfirmacaoSenha;
+    private javax.swing.JTextField txtCpf;
+    private javax.swing.JTextField txtDDD;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFiltro;
     private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtSiape;
+    private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }
