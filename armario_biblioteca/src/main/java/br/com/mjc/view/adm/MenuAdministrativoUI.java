@@ -344,7 +344,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         labelDDD.setText("DDD:");
 
-        labelNumero.setText("Telefone:");
+        labelTelefone.setText("Telefone:");
 
         titleDadosBibliotecario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         titleDadosBibliotecario.setText("Dados do Bibliotecário");
