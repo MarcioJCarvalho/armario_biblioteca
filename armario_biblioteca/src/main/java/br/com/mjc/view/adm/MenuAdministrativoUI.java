@@ -8,6 +8,7 @@ import br.com.mjc.controller.BibliotecarioController;
 import br.com.mjc.dto.BibliotecarioDTO;
 import br.com.mjc.dto.InfoDTO;
 import br.com.mjc.enums.Status;
+import br.com.mjc.utils.Mascara;
 import br.com.mjc.utils.Validador;
 import br.com.mjc.view.MainMenuUI;
 import javax.swing.JOptionPane;
@@ -19,6 +20,8 @@ import javax.swing.JOptionPane;
 public class MenuAdministrativoUI extends javax.swing.JFrame {
 
     private BibliotecarioController bibliotecarioController;
+    private InfoDTO infoDTO;
+    private BibliotecarioDTO bibliotecarioDTO;
 
     /**
      * Creates new form MenuAdministrativoUI
@@ -30,6 +33,8 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         radioGrupo.add(radioNome);
         radioGrupo.add(radioSiape);
         bibliotecarioController = new BibliotecarioController();
+        infoDTO = new InfoDTO();
+        bibliotecarioDTO = new BibliotecarioDTO();
     }
 
     /**
@@ -90,6 +95,14 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         labelConfirmarSenha = new javax.swing.JLabel();
         txtConfirmacaoSenha = new javax.swing.JPasswordField();
+        msgNome = new javax.swing.JLabel();
+        msgCpf = new javax.swing.JLabel();
+        msgSiape = new javax.swing.JLabel();
+        msgConfirmacaoSenha = new javax.swing.JLabel();
+        msgSenha = new javax.swing.JLabel();
+        msgEmail = new javax.swing.JLabel();
+        msgDDD = new javax.swing.JLabel();
+        msgTelefone = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         heaerEstudante = new javax.swing.JPanel();
         bodyEstudante = new javax.swing.JPanel();
@@ -283,7 +296,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
+            .addGap(0, 498, Short.MAX_VALUE)
         );
 
         jPanel7.add(jPanel10, java.awt.BorderLayout.LINE_END);
@@ -296,7 +309,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
+            .addGap(0, 498, Short.MAX_VALUE)
         );
 
         jPanel7.add(jPanel11, java.awt.BorderLayout.LINE_START);
@@ -337,7 +350,19 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         labelNome.setText("Nome:");
 
+        txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNomeFocusLost(evt);
+            }
+        });
+
         labelEmail.setText("E-mail:");
+
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEmailFocusLost(evt);
+            }
+        });
 
         titleContato.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         titleContato.setText("Contato");
@@ -351,17 +376,58 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         labelCpf.setText("CPF:");
 
+        txtCpf.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCpfFocusLost(evt);
+            }
+        });
+        txtCpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCpfKeyReleased(evt);
+            }
+        });
+
         labelSiape.setText("Siape:");
 
         labelSenha.setText("Senha:");
 
         labelConfirmarSenha.setText("Confirmar Senha:");
 
+        txtConfirmacaoSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtConfirmacaoSenhaFocusLost(evt);
+            }
+        });
         txtConfirmacaoSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtConfirmacaoSenhaActionPerformed(evt);
             }
         });
+
+        msgNome.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 10)); // NOI18N
+        msgNome.setForeground(new java.awt.Color(255, 0, 0));
+        msgNome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        msgCpf.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 10)); // NOI18N
+        msgCpf.setForeground(new java.awt.Color(255, 0, 0));
+
+        msgSiape.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 10)); // NOI18N
+        msgSiape.setForeground(new java.awt.Color(255, 0, 0));
+
+        msgConfirmacaoSenha.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 10)); // NOI18N
+        msgConfirmacaoSenha.setForeground(new java.awt.Color(255, 0, 0));
+
+        msgSenha.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 10)); // NOI18N
+        msgSenha.setForeground(new java.awt.Color(255, 0, 0));
+
+        msgEmail.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 10)); // NOI18N
+        msgEmail.setForeground(new java.awt.Color(255, 0, 0));
+
+        msgDDD.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 10)); // NOI18N
+        msgDDD.setForeground(new java.awt.Color(255, 0, 0));
+
+        msgTelefone.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 10)); // NOI18N
+        msgTelefone.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -370,12 +436,39 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(msgDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(msgTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jSeparator1)
                     .addComponent(txtEmail)
                     .addComponent(txtNome)
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(titleContato)
+                            .addComponent(titleDadosBibliotecario)
+                            .addComponent(labelNome)
+                            .addComponent(labelCpf)
+                            .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(msgCpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtCpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                            .addComponent(labelSiape)
+                            .addComponent(txtSiape, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(msgSiape, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(92, 92, 92)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtConfirmacaoSenha)
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelSenha)
+                                    .addComponent(labelConfirmarSenha))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(msgConfirmacaoSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(msgSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(msgEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(msgNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel14Layout.createSequentialGroup()
                                 .addComponent(labelDDD)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -384,23 +477,9 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
                                 .addComponent(labelTelefone)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labelEmail)
-                            .addComponent(titleDadosBibliotecario)
-                            .addComponent(labelNome)
-                            .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtSiape, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                .addComponent(txtCpf, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(labelCpf)
-                            .addComponent(labelSiape))
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                            .addComponent(txtConfirmacaoSenha)
-                            .addGroup(jPanel14Layout.createSequentialGroup()
-                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelConfirmarSenha)
-                                    .addComponent(labelSenha))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addComponent(titleContato)
+                            .addComponent(labelEmail))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
@@ -411,24 +490,38 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCpf)
-                    .addComponent(labelSenha))
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(msgNome, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addComponent(labelCpf)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addComponent(labelSenha)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(msgCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(msgSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(labelSiape)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSiape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                        .addComponent(labelConfirmarSenha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtConfirmacaoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelSiape)
-                    .addComponent(labelConfirmarSenha))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSiape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtConfirmacaoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(msgConfirmacaoSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(msgSiape, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titleContato)
@@ -436,13 +529,19 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
                 .addComponent(labelEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(msgEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDDD)
                     .addComponent(txtDDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTelefone)
                     .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(msgDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(msgTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jPanel12.add(jPanel14, java.awt.BorderLayout.CENTER);
@@ -480,7 +579,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         );
         bodyEstudanteLayout.setVerticalGroup(
             bodyEstudanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
+            .addGap(0, 551, Short.MAX_VALUE)
         );
 
         jPanel4.add(bodyEstudante, java.awt.BorderLayout.CENTER);
@@ -510,7 +609,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         );
         bodyArmarioLayout.setVerticalGroup(
             bodyArmarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
+            .addGap(0, 551, Short.MAX_VALUE)
         );
 
         jPanel5.add(bodyArmario, java.awt.BorderLayout.CENTER);
@@ -569,41 +668,95 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_radioSiapeActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        BibliotecarioDTO bibliotecarioDTO = new BibliotecarioDTO();
-        InfoDTO infoDTO = new InfoDTO();
-        String senha = new String(txtSenha.getPassword());
-        String confirmacaoSenha = new String(txtConfirmacaoSenha.getPassword());
-        infoDTO = Validador.confirmarSenha(senha, confirmacaoSenha);
-        if (infoDTO.getStatus().equals(Status.SUCESSO)) {
-            bibliotecarioDTO.setSenha(infoDTO.getObject().toString());
-        } else {
-            JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.ERROR_MESSAGE);
+        bibliotecarioDTO.setSiape(txtSiape.getText());
+        bibliotecarioDTO.setTelefone(txtDDD.getText() + txtTelefone.getText());
+
+        if (txtNome.getText().isEmpty()){
+            msgNome.setText("Nome é obrigatório!");
+            txtNome.requestFocus();
             return;
         }
 
-        bibliotecarioDTO.setNome(txtNome.getText());
-        bibliotecarioDTO.setEmail(txtEmail.getText());
-        bibliotecarioDTO.setCpf(txtCpf.getText());
-        bibliotecarioDTO.setSiape(txtSiape.getText());
-        bibliotecarioDTO.setTelefone(txtDDD.getText() + txtTelefone.getText());
-        bibliotecarioDTO.setCpf(txtCpf.getText());
-        bibliotecarioDTO.setSiape(txtSiape.getText());
-        bibliotecarioDTO.setTelefone(txtDDD.getText() + txtTelefone.getText());
+        if (txtCpf.getText().isEmpty()){
+            msgCpf.setText("Cpf é obrigatório!");
+            txtCpf.requestFocus();
+            return;
+        }
 
-        infoDTO = bibliotecarioController.cadastar(bibliotecarioDTO);
-        if(infoDTO.getStatus().equals(Status.SUCESSO)){
-            JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.OK_CANCEL_OPTION);
-        } else {
-            JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.ERROR_MESSAGE);
+        if (txtSiape.getText().isEmpty()){
+            msgSiape.setText("Siape é obrigatório!");
+            txtSiape.requestFocus();
+            return;
+        }
+
+        String senha = new String(txtSenha.getPassword());
+        if (senha.isEmpty()){
+            msgSenha.setText("Senha é obrigatória!");
+            txtSenha.requestFocus();
+            return;
+        }
+
+        String confirmacaoSenha = new String(txtConfirmacaoSenha.getPassword());
+        if (confirmacaoSenha.isEmpty()){
+            msgConfirmacaoSenha.setText("Confirmação de senha é obrigatória!");
+            txtConfirmacaoSenha.requestFocus();
+            return;
         }
 
         infoDTO = bibliotecarioController.cadastar(bibliotecarioDTO);
         if (infoDTO.getStatus().equals(Status.SUCESSO)) {
-            JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.OK_CANCEL_OPTION);
+            JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+        if (!txtEmail.getText().isEmpty()){
+            String email = txtEmail.getText();
+            if (Validador.validarEmail(email)) {
+                bibliotecarioDTO.setEmail(txtEmail.getText());
+                msgEmail.setText("");
+            } else {
+                msgEmail.setText("E-mail inválido!");
+            }
+        }
+    }//GEN-LAST:event_txtEmailFocusLost
+
+    private void txtConfirmacaoSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmacaoSenhaFocusLost
+        String senha = new String(txtSenha.getPassword());
+        String confirmacaoSenha = new String(txtConfirmacaoSenha.getPassword());
+        if (!senha.isEmpty() && !confirmacaoSenha.isEmpty()){
+            if (Validador.confirmarSenha(senha, confirmacaoSenha)) {
+                bibliotecarioDTO.setSenha(senha);
+                msgConfirmacaoSenha.setText("");
+            } else {
+                msgConfirmacaoSenha.setText("As senhas não conferem!");
+            }
+        }
+    }//GEN-LAST:event_txtConfirmacaoSenhaFocusLost
+
+    private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
+        if (!txtNome.getText().isEmpty() && Validador.validarNome(txtNome.getText())){
+            bibliotecarioDTO.setNome(txtNome.getText());
+            msgNome.setText("");
+        } else {
+            msgNome.setText("Nome inválido!");
+        }
+    }//GEN-LAST:event_txtNomeFocusLost
+
+    private void txtCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCpfFocusLost
+        if (!txtCpf.getText().isEmpty() && Validador.validarCPF(Validador.limparNumero(txtCpf.getText()))){
+            bibliotecarioDTO.setCpf(txtCpf.getText());
+            msgCpf.setText("");
+        } else {
+            msgCpf.setText("CPF inválido!");
+        }
+    }//GEN-LAST:event_txtCpfFocusLost
+
+    private void txtCpfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpfKeyReleased
+        txtCpf.setText(Mascara.Cpf(txtCpf.getText()));
+    }//GEN-LAST:event_txtCpfKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -650,6 +803,14 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     private javax.swing.JLabel labelSenha;
     private javax.swing.JLabel labelSiape;
     private javax.swing.JLabel labelTelefone;
+    private javax.swing.JLabel msgConfirmacaoSenha;
+    private javax.swing.JLabel msgCpf;
+    private javax.swing.JLabel msgDDD;
+    private javax.swing.JLabel msgEmail;
+    private javax.swing.JLabel msgNome;
+    private javax.swing.JLabel msgSenha;
+    private javax.swing.JLabel msgSiape;
+    private javax.swing.JLabel msgTelefone;
     private javax.swing.ButtonGroup radioGrupo;
     private javax.swing.JRadioButton radioNome;
     private javax.swing.JRadioButton radioSiape;

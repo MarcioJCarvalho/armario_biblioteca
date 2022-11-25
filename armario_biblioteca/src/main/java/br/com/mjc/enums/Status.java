@@ -5,5 +5,6 @@ public enum Status {
     OK,
     FALHA,
     ERRO,
-    INVALIDO
+    INVALIDO,
+    AVISO
 }
