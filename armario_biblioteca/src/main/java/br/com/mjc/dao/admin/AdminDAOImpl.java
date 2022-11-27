@@ -16,15 +16,13 @@ public class AdminDAOImpl implements AdminDAO {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
         EntityManager em = emf.createEntityManager();
         try {
-
             em.getTransaction().begin();
-
             Admin adminLogado = (Admin) em.createQuery(
                     "SELECT a from Admin a where a.email LIKE :email and a.senha = :senha")
                     .setParameter("email", admin.getEmail())
                     .setParameter("senha", admin.getSenha()).getSingleResult();
-
             em.getTransaction().commit();
+            em.close();
             infoDTO.setObject(adminLogado);
             infoDTO.setStatus(Status.SUCESSO);
         } catch (Exception erro) {

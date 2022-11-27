@@ -8,13 +8,20 @@ import br.com.mjc.controller.BibliotecarioController;
 import br.com.mjc.dto.BibliotecarioDTO;
 import br.com.mjc.dto.InfoDTO;
 import br.com.mjc.enums.Status;
+import br.com.mjc.model.Bibliotecario;
+import br.com.mjc.utils.Formato;
 import br.com.mjc.utils.Mascara;
+import br.com.mjc.utils.Tratamento;
 import br.com.mjc.utils.Validador;
 import br.com.mjc.view.MainMenuUI;
-import javax.swing.JOptionPane;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- *
  * @author moska
  */
 public class MenuAdministrativoUI extends javax.swing.JFrame {
@@ -22,6 +29,10 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     private BibliotecarioController bibliotecarioController;
     private InfoDTO infoDTO;
     private BibliotecarioDTO bibliotecarioDTO;
+
+    private List<JTextField> formBibliotecario = new ArrayList<>();
+    private List<JLabel> msgValidacaoBibliotecario = new ArrayList<>();
+
 
     /**
      * Creates new form MenuAdministrativoUI
@@ -33,8 +44,23 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         radioGrupo.add(radioNome);
         radioGrupo.add(radioSiape);
         bibliotecarioController = new BibliotecarioController();
-        infoDTO = new InfoDTO();
         bibliotecarioDTO = new BibliotecarioDTO();
+
+        formBibliotecario.add(txtNome);
+        formBibliotecario.add(txtSiape);
+        formBibliotecario.add(txtCpf);
+        formBibliotecario.add(txtTelefone);
+        formBibliotecario.add(txtSenha);
+        formBibliotecario.add(txtConfirmacaoSenha);
+        formBibliotecario.add(txtEmail);
+
+        msgValidacaoBibliotecario.add(msgNome);
+        msgValidacaoBibliotecario.add(msgSiape);
+        msgValidacaoBibliotecario.add(msgCpf);
+        msgValidacaoBibliotecario.add(msgTelefone);
+        msgValidacaoBibliotecario.add(msgSenha);
+        msgValidacaoBibliotecario.add(msgConfirmacaoSenha);
+        msgValidacaoBibliotecario.add(msgEmail);
     }
 
     /**
@@ -48,7 +74,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         radioGrupo = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        tab = new javax.swing.JTabbedPane();
+        tabEntidades = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         headerEmprestimo = new javax.swing.JPanel();
         bodyEmprestimo = new javax.swing.JPanel();
@@ -56,7 +82,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         bodyBibliotecario = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabBibliotecario = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         radioNome = new javax.swing.JRadioButton();
@@ -65,7 +91,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         jPanel16 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tabListaBibliotecarios = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -116,6 +142,12 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
+
+        tabEntidades.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tabEntidadesStateChanged(evt);
+            }
+        });
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
@@ -169,7 +201,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         jPanel2.add(bodyEmprestimo, java.awt.BorderLayout.CENTER);
 
-        tab.addTab("Empréstimos", jPanel2);
+        tabEntidades.addTab("Empréstimos", jPanel2);
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
@@ -202,11 +234,10 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
                 .addComponent(radioNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(radioSiape)
-                .addGap(270, 270, 270)
-                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnBuscar)
-                .addContainerGap())
+                .addGap(290, 290, 290)
+                .addComponent(txtFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBuscar))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,19 +252,19 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         jPanel16.setLayout(new java.awt.BorderLayout());
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tabListaBibliotecarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "E-mail", "Siape", "Telefone"
+                "Nome", "E-mail", "Siape", "Telefone", "Editar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -244,19 +275,20 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable3);
-        if (jTable3.getColumnModel().getColumnCount() > 0) {
-            jTable3.getColumnModel().getColumn(0).setResizable(false);
-            jTable3.getColumnModel().getColumn(1).setResizable(false);
-            jTable3.getColumnModel().getColumn(2).setResizable(false);
-            jTable3.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane3.setViewportView(tabListaBibliotecarios);
+        if (tabListaBibliotecarios.getColumnModel().getColumnCount() > 0) {
+            tabListaBibliotecarios.getColumnModel().getColumn(0).setResizable(false);
+            tabListaBibliotecarios.getColumnModel().getColumn(1).setResizable(false);
+            tabListaBibliotecarios.getColumnModel().getColumn(2).setResizable(false);
+            tabListaBibliotecarios.getColumnModel().getColumn(3).setResizable(false);
+            tabListaBibliotecarios.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jPanel16.add(jScrollPane3, java.awt.BorderLayout.CENTER);
 
         jPanel6.add(jPanel16, java.awt.BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("Bibliotecários", jPanel6);
+        tabBibliotecario.addTab("Bibliotecários", jPanel6);
 
         jPanel7.setLayout(new java.awt.BorderLayout());
 
@@ -322,6 +354,11 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -347,6 +384,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         jPanel12.add(jPanel13, java.awt.BorderLayout.PAGE_END);
 
         labelNome.setText("Nome:");
+        labelNome.setToolTipText("Ao menos dois nomes (embora existam pessoas que só tenham um nome, como por exemplo, o emperador Akihito do Japão, mas vamos deixá-las de fora).\nExatamente um espaço separando nomes.\nUm mesmo nome ou sobrenome pode ser composto, separado por hífen. Pode haver mais de um hífen (ex: \"Luís Augusto de Saxe-Coburgo-Gota\")\nAceitando acentos.\nA inicial de cada palavra deve ser maiúscula e as demais letras minúsculas.\nDeve aceitar conjunções inteiramente minúsculas.\nSobrenomes como \"O'Brian\", \"d'Alembert\" e \"McDonald\" devem ser aceitos.\nNão podem haver duas ou mais conjunções seguidas (ex: \"do da\"). Entretanto \"María Antonieta de las Nieves\" é um nome válido, então a conjunção pode ser composta.\nNomes e sobrenomes (mas não conjunções) devem ter ao menos duas letras.\nApóstrofos entre letras são permitidos (ex: \"Samuel Eto'o\"). Mas não podem estar no começo ou no final da palavra e nem estarem consecutivos.\nAlguns nomes tais como \"Martin Luther King Jr.\" e \"William Henry Gates III\" tem sufixos.");
 
         txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -367,6 +405,11 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         labelTelefone.setText("Telefone:");
 
+        txtTelefone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelefoneFocusLost(evt);
+            }
+        });
         txtTelefone.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTelefoneKeyReleased(evt);
@@ -391,18 +434,25 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         labelSiape.setText("Siape:");
 
+        txtSiape.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSiapeFocusLost(evt);
+            }
+        });
+
         labelSenha.setText("Senha:");
+
+        txtSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSenhaFocusLost(evt);
+            }
+        });
 
         labelConfirmarSenha.setText("Confirmar Senha:");
 
         txtConfirmacaoSenha.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtConfirmacaoSenhaFocusLost(evt);
-            }
-        });
-        txtConfirmacaoSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtConfirmacaoSenhaActionPerformed(evt);
             }
         });
 
@@ -541,13 +591,13 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         jPanel7.add(jPanel12, java.awt.BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("Cadastro", jPanel7);
+        tabBibliotecario.addTab("Cadastro / Edição", jPanel7);
 
-        bodyBibliotecario.add(jTabbedPane1, java.awt.BorderLayout.PAGE_START);
+        bodyBibliotecario.add(tabBibliotecario, java.awt.BorderLayout.PAGE_START);
 
         jPanel3.add(bodyBibliotecario, java.awt.BorderLayout.CENTER);
 
-        tab.addTab("Bibliotecário", jPanel3);
+        tabEntidades.addTab("Bibliotecário", jPanel3);
 
         jPanel4.setLayout(new java.awt.BorderLayout());
 
@@ -577,7 +627,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         jPanel4.add(bodyEstudante, java.awt.BorderLayout.CENTER);
 
-        tab.addTab("Estudantes", jPanel4);
+        tabEntidades.addTab("Estudantes", jPanel4);
 
         jPanel5.setLayout(new java.awt.BorderLayout());
 
@@ -607,9 +657,9 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         jPanel5.add(bodyArmario, java.awt.BorderLayout.CENTER);
 
-        tab.addTab("Armários", jPanel5);
+        tabEntidades.addTab("Armários", jPanel5);
 
-        jPanel1.add(tab, java.awt.BorderLayout.PAGE_START);
+        jPanel1.add(tabEntidades, java.awt.BorderLayout.PAGE_START);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -642,9 +692,32 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_sairActionPerformed
 
-    private void txtConfirmacaoSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmacaoSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtConfirmacaoSenhaActionPerformed
+    private void listarBibliotecarios() {
+        List<Bibliotecario> bibliotecarioList = bibliotecarioController.listarTodos();
+        DefaultTableModel modeloColunasTabela = (DefaultTableModel) tabListaBibliotecarios.getModel();
+        while (modeloColunasTabela.getRowCount() != 0) {
+            modeloColunasTabela.removeRow(0);
+        }
+
+        for (int i = 0; i < bibliotecarioList.size(); i++) {
+            Object[] bibliotecarioTab = new Object[5];
+            bibliotecarioTab[0] = bibliotecarioList.get(i).getNome();
+            bibliotecarioTab[1] = bibliotecarioList.get(i).getEmail();
+            bibliotecarioTab[2] = bibliotecarioList.get(i).getSiape();
+            bibliotecarioTab[3] = Formato.telefone(bibliotecarioList.get(i).getTelefone());
+            bibliotecarioTab[4] = new JButton("Editar");
+            modeloColunasTabela.addRow(bibliotecarioTab);
+        }
+
+//        for (Bibliotecario bibliotecarios : bibliotecarioList) {
+//            Object[] bibliotecario = new Object[4];
+//            bibliotecario[0] = bibliotecarios.getNome();
+//            bibliotecario[1] = bibliotecarios.getEmail();
+//            bibliotecario[2] = bibliotecarios.getSiape();
+//            bibliotecario[3] = bibliotecarios.getTelefone();
+//            modeloColunasTabela.addRow(bibliotecario);
+//        }
+    }
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         if (radioNome.isSelected()) {
@@ -657,55 +730,74 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void radioSiapeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSiapeActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_radioSiapeActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         bibliotecarioDTO.setSiape(txtSiape.getText());
-        bibliotecarioDTO.setTelefone(txtTelefone.getText());
 
-        if (txtNome.getText().isEmpty()){
+        if (txtNome.getText().isEmpty()) {
             msgNome.setText("Nome é obrigatório!");
             txtNome.requestFocus();
             return;
         }
 
-        if (txtCpf.getText().isEmpty()){
+        if (txtCpf.getText().isEmpty()) {
             msgCpf.setText("Cpf é obrigatório!");
             txtCpf.requestFocus();
             return;
         }
 
-        if (txtSiape.getText().isEmpty()){
+        if (txtSiape.getText().isEmpty()) {
             msgSiape.setText("Siape é obrigatório!");
             txtSiape.requestFocus();
             return;
         }
 
         String senha = new String(txtSenha.getPassword());
-        if (senha.isEmpty()){
+        if (senha.isEmpty()) {
             msgSenha.setText("Senha é obrigatória!");
             txtSenha.requestFocus();
             return;
         }
 
         String confirmacaoSenha = new String(txtConfirmacaoSenha.getPassword());
-        if (confirmacaoSenha.isEmpty()){
+        if (confirmacaoSenha.isEmpty()) {
             msgConfirmacaoSenha.setText("Confirmação de senha é obrigatória!");
             txtConfirmacaoSenha.requestFocus();
             return;
         }
 
+        if (txtEmail.getText().isEmpty()) {
+            msgEmail.setText("Email é obrigatório!");
+            txtEmail.requestFocus();
+            return;
+        }
+
+        if (txtTelefone.getText().isEmpty()) {
+            msgTelefone.setText("Telefone é obrigatório!");
+            txtTelefone.requestFocus();
+            return;
+        }
+
         infoDTO = bibliotecarioController.cadastar(bibliotecarioDTO);
         if (infoDTO.getStatus().equals(Status.SUCESSO)) {
-            JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.INFORMATION_MESSAGE);
+            for (JTextField form : formBibliotecario) {
+                form.setText("");
+            }
+            int resposta = JOptionPane.showConfirmDialog(null, infoDTO.getMensagem() +  "\nDeseja cadastrar um novo bibliotecário?", infoDTO.getStatus().toString(), JOptionPane.INFORMATION_MESSAGE);
+            if (resposta == JOptionPane.NO_OPTION) {
+                listarBibliotecarios();
+                tabBibliotecario.setSelectedIndex(0);
+            }
         } else {
             JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
-        if (!txtEmail.getText().isEmpty()){
+        if (!txtEmail.getText().isEmpty()) {
             if (Validador.validarEmail(txtEmail.getText())) {
                 bibliotecarioDTO.setEmail(txtEmail.getText());
                 msgEmail.setText("");
@@ -718,7 +810,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     private void txtConfirmacaoSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmacaoSenhaFocusLost
         String senha = new String(txtSenha.getPassword());
         String confirmacaoSenha = new String(txtConfirmacaoSenha.getPassword());
-        if (!senha.isEmpty() && !confirmacaoSenha.isEmpty()){
+        if (!confirmacaoSenha.isEmpty()) {
             if (Validador.confirmarSenha(senha, confirmacaoSenha)) {
                 bibliotecarioDTO.setSenha(senha);
                 msgConfirmacaoSenha.setText("");
@@ -729,8 +821,8 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtConfirmacaoSenhaFocusLost
 
     private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
-        if (!txtNome.getText().isEmpty()){
-            if (Validador.validarNome(txtNome.getText())){
+        if (!txtNome.getText().isEmpty()) {
+            if (Validador.validarNome(txtNome.getText())) {
                 bibliotecarioDTO.setNome(txtNome.getText());
                 msgNome.setText("");
             } else {
@@ -740,8 +832,8 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeFocusLost
 
     private void txtCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCpfFocusLost
-        if (!txtCpf.getText().isEmpty()){
-            if (Validador.validarCPF(Validador.limparNumero(txtCpf.getText()))){
+        if (!txtCpf.getText().isEmpty()) {
+            if (Validador.validarCPF(Tratamento.limparNumero(txtCpf.getText()))) {
                 bibliotecarioDTO.setCpf(txtCpf.getText());
                 msgCpf.setText("");
             } else {
@@ -751,12 +843,69 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCpfFocusLost
 
     private void txtCpfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpfKeyReleased
-        txtCpf.setText(Mascara.Cpf(txtCpf.getText()));
+        txtCpf.setText(Mascara.cpf(txtCpf.getText()));
     }//GEN-LAST:event_txtCpfKeyReleased
 
     private void txtTelefoneKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefoneKeyReleased
-        txtTelefone.setText(Mascara.Telefone(txtTelefone.getText()));
+        txtTelefone.setText(Mascara.telefone(txtTelefone.getText()));
     }//GEN-LAST:event_txtTelefoneKeyReleased
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        boolean isVazio = true;
+        for (JTextField form : formBibliotecario) {
+            if (!form.getText().equals("") || !form.getText().isEmpty()){
+                isVazio = false;
+                break;
+            }
+        }
+
+        if (isVazio){
+            tabBibliotecario.setSelectedIndex(0);
+            listarBibliotecarios();
+        } else {
+            int resposta = JOptionPane.showConfirmDialog(null, "Ao cancelar você perderá todo o processo de cadatro", "Você deseja cancelar?", JOptionPane.WARNING_MESSAGE);
+            if (resposta == JOptionPane.YES_OPTION) {
+                for (JTextField form : formBibliotecario) {
+                    form.setText("");
+                }
+
+                for (JLabel msg : msgValidacaoBibliotecario) {
+                    msg.setText("");
+                }
+                tabBibliotecario.setSelectedIndex(0);
+                listarBibliotecarios();
+            }
+        }
+
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSenhaFocusLost
+        String senha = new String(txtSenha.getPassword());
+        if (!senha.isEmpty()) {
+            bibliotecarioDTO.setSenha(senha);
+            msgSenha.setText("");
+        }
+    }//GEN-LAST:event_txtSenhaFocusLost
+
+    private void txtSiapeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSiapeFocusLost
+        if (!txtSiape.getText().isEmpty()) {
+            bibliotecarioDTO.setSiape(txtSiape.getText());
+            msgSiape.setText("");
+        }
+    }//GEN-LAST:event_txtSiapeFocusLost
+
+    private void txtTelefoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefoneFocusLost
+        if (!txtTelefone.getText().isEmpty()) {
+            bibliotecarioDTO.setTelefone(txtTelefone.getText());
+            msgTelefone.setText("");
+        }
+    }//GEN-LAST:event_txtTelefoneFocusLost
+
+    private void tabEntidadesStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabEntidadesStateChanged
+        if (tabEntidades.getSelectedIndex() == 1) {
+            listarBibliotecarios();
+        }
+    }//GEN-LAST:event_tabEntidadesStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyArmario;
@@ -791,9 +940,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable3;
     private javax.swing.JLabel labelConfirmarSenha;
     private javax.swing.JLabel labelCpf;
     private javax.swing.JLabel labelEmail;
@@ -813,7 +960,9 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioNome;
     private javax.swing.JRadioButton radioSiape;
     private javax.swing.JMenuItem sair;
-    private javax.swing.JTabbedPane tab;
+    private javax.swing.JTabbedPane tabBibliotecario;
+    private javax.swing.JTabbedPane tabEntidades;
+    private javax.swing.JTable tabListaBibliotecarios;
     private javax.swing.JLabel titleContato;
     private javax.swing.JLabel titleDadosBibliotecario;
     private javax.swing.JPasswordField txtConfirmacaoSenha;
