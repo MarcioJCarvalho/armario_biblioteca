@@ -17,4 +17,6 @@ public interface BibliotecarioService {
     InfoDTO deletar(BibliotecarioDTO bibliotecarioDTO);
 
     InfoDTO buscarPorId(Long id);
+
+    BibliotecarioDTO buscarPorSiape(String siape);
 }

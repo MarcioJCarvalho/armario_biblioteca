@@ -1,5 +1,6 @@
 package br.com.mjc.dao.bibliotecario;
 
+import br.com.mjc.dto.BibliotecarioDTO;
 import br.com.mjc.dto.InfoDTO;
 import br.com.mjc.enums.Status;
 import br.com.mjc.model.Bibliotecario;
@@ -49,6 +50,27 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
 
     @Override
     public InfoDTO alterar(Bibliotecario bibliotecario) {
+        ///TODO verificar futuramente como validar se os dados não são de outro usuario (talvez se o usuario retornado for o mesmo id e cpf não é duplicidade)
+//        infoDTO = verificarSeJaExiste(bibliotecario);
+//        if (!infoDTO.getStatus().equals(Status.INVALIDO)){
+//            EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
+//            EntityManager em = emf.createEntityManager();
+//            try {
+//                em.getTransaction().begin();
+//                em.merge(bibliotecario);
+//                em.getTransaction().commit();
+//                em.close();
+//                infoDTO.setMensagem("Bibliotecário alterado com sucesso!");
+//                infoDTO.setStatus(Status.SUCESSO);
+//            } catch (Exception ex) {
+//                ex.printStackTrace();
+//                em.getTransaction().rollback();
+//                em.close();
+//                infoDTO.setMensagem("Houve um problema ao tentar alterar o bibliotecário!");
+//                infoDTO.setStatus(Status.ERRO);
+//            }
+//        }
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
         EntityManager em = emf.createEntityManager();
         try {
@@ -65,6 +87,7 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
             infoDTO.setMensagem("Houve um problema ao tentar alterar o bibliotecário!");
             infoDTO.setStatus(Status.ERRO);
         }
+
         return infoDTO;
     }
 
@@ -88,6 +111,27 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
             infoDTO.setStatus(Status.ERRO);
         }
         return bibliotecarioList;
+    }
+
+    @Override
+    public Bibliotecario buscarPorSiape(String siape) {
+        Bibliotecario bibliotecario = new Bibliotecario();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            bibliotecario = (Bibliotecario) em.createQuery(
+                            "SELECT b FROM Bibliotecario b WHERE b.siape LIKE :siape")
+                    .setParameter("siape", siape)
+                    .getSingleResult();
+            em.getTransaction().commit();
+            em.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.close();
+            throw new RuntimeException(e);
+        }
+        return bibliotecario;
     }
 
     private InfoDTO verificarSeJaExiste(Bibliotecario bibliotecario) {

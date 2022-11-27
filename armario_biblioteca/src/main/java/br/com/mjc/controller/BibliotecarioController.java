@@ -18,7 +18,15 @@ public class BibliotecarioController {
         return bibliotecarioServiceImpl.cadastar(bibliotecarioDTO);
     }
 
+    public InfoDTO alterar(BibliotecarioDTO bibliotecarioDTO){
+        return bibliotecarioServiceImpl.alterar(bibliotecarioDTO);
+    }
+
     public List<Bibliotecario> listarTodos(){
         return bibliotecarioServiceImpl.listar();
+    }
+
+    public BibliotecarioDTO buscarPorSiape(String siape){
+        return bibliotecarioServiceImpl.buscarPorSiape(siape);
     }
 }

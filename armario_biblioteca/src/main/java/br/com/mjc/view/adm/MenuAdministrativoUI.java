@@ -29,10 +29,8 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     private BibliotecarioController bibliotecarioController;
     private InfoDTO infoDTO;
     private BibliotecarioDTO bibliotecarioDTO;
-
     private List<JTextField> formBibliotecario = new ArrayList<>();
     private List<JLabel> msgValidacaoBibliotecario = new ArrayList<>();
-
 
     /**
      * Creates new form MenuAdministrativoUI
@@ -234,10 +232,11 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
                 .addComponent(radioNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(radioSiape)
-                .addGap(290, 290, 290)
+                .addGap(282, 282, 282)
                 .addComponent(txtFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBuscar))
+                .addComponent(btnBuscar)
+                .addGap(8, 8, 8))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,36 +251,39 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         jPanel16.setLayout(new java.awt.BorderLayout());
 
+        tabListaBibliotecarios.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         tabListaBibliotecarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "E-mail", "Siape", "Telefone", "Editar"
+                "Nome", "E-mail", "Siape", "Telefone"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        });
+        tabListaBibliotecarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tabListaBibliotecarios.setGridColor(new java.awt.Color(204, 204, 204));
+        tabListaBibliotecarios.setRowHeight(25);
+        tabListaBibliotecarios.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        tabListaBibliotecarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabListaBibliotecariosMouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(tabListaBibliotecarios);
+        tabListaBibliotecarios.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         if (tabListaBibliotecarios.getColumnModel().getColumnCount() > 0) {
             tabListaBibliotecarios.getColumnModel().getColumn(0).setResizable(false);
             tabListaBibliotecarios.getColumnModel().getColumn(1).setResizable(false);
             tabListaBibliotecarios.getColumnModel().getColumn(2).setResizable(false);
             tabListaBibliotecarios.getColumnModel().getColumn(3).setResizable(false);
-            tabListaBibliotecarios.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jPanel16.add(jScrollPane3, java.awt.BorderLayout.CENTER);
@@ -688,7 +690,6 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     }
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
-        new MainMenuUI().setVisible(true);
         dispose();
     }//GEN-LAST:event_sairActionPerformed
 
@@ -705,18 +706,8 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
             bibliotecarioTab[1] = bibliotecarioList.get(i).getEmail();
             bibliotecarioTab[2] = bibliotecarioList.get(i).getSiape();
             bibliotecarioTab[3] = Formato.telefone(bibliotecarioList.get(i).getTelefone());
-            bibliotecarioTab[4] = new JButton("Editar");
             modeloColunasTabela.addRow(bibliotecarioTab);
         }
-
-//        for (Bibliotecario bibliotecarios : bibliotecarioList) {
-//            Object[] bibliotecario = new Object[4];
-//            bibliotecario[0] = bibliotecarios.getNome();
-//            bibliotecario[1] = bibliotecarios.getEmail();
-//            bibliotecario[2] = bibliotecarios.getSiape();
-//            bibliotecario[3] = bibliotecarios.getTelefone();
-//            modeloColunasTabela.addRow(bibliotecario);
-//        }
     }
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -735,23 +726,28 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         bibliotecarioDTO.setSiape(txtSiape.getText());
-
         if (txtNome.getText().isEmpty()) {
             msgNome.setText("Nome é obrigatório!");
             txtNome.requestFocus();
             return;
+        } else {
+            bibliotecarioDTO.setNome(txtNome.getText());
         }
 
         if (txtCpf.getText().isEmpty()) {
             msgCpf.setText("Cpf é obrigatório!");
             txtCpf.requestFocus();
             return;
+        } else {
+            bibliotecarioDTO.setCpf(txtCpf.getText());
         }
 
         if (txtSiape.getText().isEmpty()) {
             msgSiape.setText("Siape é obrigatório!");
             txtSiape.requestFocus();
             return;
+        } else {
+            bibliotecarioDTO.setSiape(txtSiape.getText());
         }
 
         String senha = new String(txtSenha.getPassword());
@@ -759,6 +755,8 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
             msgSenha.setText("Senha é obrigatória!");
             txtSenha.requestFocus();
             return;
+        } else {
+            bibliotecarioDTO.setSenha(senha);
         }
 
         String confirmacaoSenha = new String(txtConfirmacaoSenha.getPassword());
@@ -772,26 +770,44 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
             msgEmail.setText("Email é obrigatório!");
             txtEmail.requestFocus();
             return;
+        } else {
+            bibliotecarioDTO.setEmail(txtEmail.getText());
         }
 
         if (txtTelefone.getText().isEmpty()) {
             msgTelefone.setText("Telefone é obrigatório!");
             txtTelefone.requestFocus();
             return;
+        } else {
+            bibliotecarioDTO.setTelefone(Tratamento.limparNumero(txtTelefone.getText()));
         }
 
-        infoDTO = bibliotecarioController.cadastar(bibliotecarioDTO);
-        if (infoDTO.getStatus().equals(Status.SUCESSO)) {
-            for (JTextField form : formBibliotecario) {
-                form.setText("");
-            }
-            int resposta = JOptionPane.showConfirmDialog(null, infoDTO.getMensagem() +  "\nDeseja cadastrar um novo bibliotecário?", infoDTO.getStatus().toString(), JOptionPane.INFORMATION_MESSAGE);
-            if (resposta == JOptionPane.NO_OPTION) {
-                listarBibliotecarios();
-                tabBibliotecario.setSelectedIndex(0);
+        if (bibliotecarioDTO.getId() == null) {
+            infoDTO = bibliotecarioController.cadastar(bibliotecarioDTO);
+            if (infoDTO.getStatus().equals(Status.SUCESSO)) {
+                for (JTextField form : formBibliotecario) {
+                    form.setText("");
+                }
+                int resposta = JOptionPane.showConfirmDialog(null, infoDTO.getMensagem() + "\nDeseja cadastrar um novo bibliotecário?", infoDTO.getStatus().toString(), JOptionPane.INFORMATION_MESSAGE);
+                if (resposta == JOptionPane.NO_OPTION) {
+                    listarBibliotecarios();
+                    tabBibliotecario.setSelectedIndex(0);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.ERROR_MESSAGE);
+            infoDTO = bibliotecarioController.alterar(bibliotecarioDTO);
+            if (infoDTO.getStatus().equals(Status.SUCESSO)) {
+                for (JTextField form : formBibliotecario) {
+                    form.setText("");
+                }
+                JOptionPane.showConfirmDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.INFORMATION_MESSAGE);
+                listarBibliotecarios();
+                tabBibliotecario.setSelectedIndex(0);
+            } else {
+                JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.ERROR_MESSAGE);
+            }
         }
 
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -853,13 +869,13 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         boolean isVazio = true;
         for (JTextField form : formBibliotecario) {
-            if (!form.getText().equals("") || !form.getText().isEmpty()){
+            if (!form.getText().equals("") || !form.getText().isEmpty()) {
                 isVazio = false;
                 break;
             }
         }
 
-        if (isVazio){
+        if (isVazio) {
             tabBibliotecario.setSelectedIndex(0);
             listarBibliotecarios();
         } else {
@@ -906,6 +922,25 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
             listarBibliotecarios();
         }
     }//GEN-LAST:event_tabEntidadesStateChanged
+
+    private void tabListaBibliotecariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabListaBibliotecariosMouseClicked
+        DefaultTableModel modeloColunasTabela = (DefaultTableModel) tabListaBibliotecarios.getModel();
+        int index = tabListaBibliotecarios.getSelectedRow();
+        String siape = (String) modeloColunasTabela.getValueAt(index, 2);
+        BibliotecarioDTO bibliotecarioDTOEdicao = new BibliotecarioDTO();
+        bibliotecarioDTOEdicao = bibliotecarioController.buscarPorSiape(siape);
+        bibliotecarioDTO.setId(bibliotecarioDTOEdicao.getId());
+        bibliotecarioDTO.setDataCriacao(bibliotecarioDTOEdicao.getDataCriacao());
+        txtNome.setText(bibliotecarioDTOEdicao.getNome());
+        txtCpf.setText(bibliotecarioDTOEdicao.getCpf());
+        txtSiape.setText(bibliotecarioDTOEdicao.getSiape());
+        txtSenha.setText(bibliotecarioDTOEdicao.getSenha());
+        txtEmail.setText(bibliotecarioDTOEdicao.getEmail());
+        txtTelefone.setText(Formato.telefone(bibliotecarioDTOEdicao.getTelefone()));
+        tabBibliotecario.setTitleAt(1, "Edição");
+        tabBibliotecario.setSelectedIndex(1);
+    }//GEN-LAST:event_tabListaBibliotecariosMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyArmario;
