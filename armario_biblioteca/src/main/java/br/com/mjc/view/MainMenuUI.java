@@ -16,21 +16,27 @@ public class MainMenuUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        formEmprestimoUI = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        txtChave = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtRa = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        top = new javax.swing.JPanel();
+        rigthSide = new javax.swing.JPanel();
+        footer = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        leftSide = new javax.swing.JPanel();
+        bodyArea = new javax.swing.JPanel();
+        emprestimoArea = new javax.swing.JPanel();
+        admLogin = new javax.swing.JPanel();
+        btnAdmLogin = new javax.swing.JButton();
+        titleAdm = new javax.swing.JLabel();
+        emprestimoForm = new javax.swing.JPanel();
+        titleLogin = new javax.swing.JLabel();
+        labelArmario = new javax.swing.JLabel();
+        txtArmario = new javax.swing.JTextField();
+        labelRa = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        adm = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        imgLabel = new javax.swing.JLabel();
+        btnEmprestar = new javax.swing.JButton();
+        btnDevolver = new javax.swing.JButton();
+        labelSenha = new javax.swing.JLabel();
+        txtRa = new javax.swing.JTextField();
+        imgArea = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MenuPrincipal");
@@ -39,202 +45,225 @@ public class MainMenuUI extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
 
-        jPanel1.setBackground(new java.awt.Color(247, 247, 247));
-        jPanel1.setFocusable(false);
-        jPanel1.setMaximumSize(new java.awt.Dimension(480, 320));
-
-        jPanel3.setBackground(new java.awt.Color(247, 247, 247));
-        jPanel3.setOpaque(false);
-
-        formEmprestimoUI.setBackground(new java.awt.Color(247, 247, 247));
-        formEmprestimoUI.setName(""); // NOI18N
-
-        jLabel1.setText("Nº Chave: ");
-
-        jLabel2.setText("RA:");
-
-        jLabel3.setText("Senha:");
-
-        txtSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSenhaActionPerformed(evt);
-            }
-        });
-
-        jButton1.setBackground(new java.awt.Color(153, 255, 153));
-        jButton1.setText("Emprestar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setBackground(new java.awt.Color(255, 153, 153));
-        jButton2.setText("Devolver");
-
-        javax.swing.GroupLayout formEmprestimoUILayout = new javax.swing.GroupLayout(formEmprestimoUI);
-        formEmprestimoUI.setLayout(formEmprestimoUILayout);
-        formEmprestimoUILayout.setHorizontalGroup(
-            formEmprestimoUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formEmprestimoUILayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(formEmprestimoUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(txtChave)
-                    .addComponent(txtRa)
-                    .addComponent(txtSenha)
-                    .addGroup(formEmprestimoUILayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout topLayout = new javax.swing.GroupLayout(top);
+        top.setLayout(topLayout);
+        topLayout.setHorizontalGroup(
+            topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1229, Short.MAX_VALUE)
         );
-        formEmprestimoUILayout.setVerticalGroup(
-            formEmprestimoUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formEmprestimoUILayout.createSequentialGroup()
+        topLayout.setVerticalGroup(
+            topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(top, java.awt.BorderLayout.PAGE_START);
+
+        javax.swing.GroupLayout rigthSideLayout = new javax.swing.GroupLayout(rigthSide);
+        rigthSide.setLayout(rigthSideLayout);
+        rigthSideLayout.setHorizontalGroup(
+            rigthSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        rigthSideLayout.setVerticalGroup(
+            rigthSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 552, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(rigthSide, java.awt.BorderLayout.LINE_END);
+
+        javax.swing.GroupLayout footerLayout = new javax.swing.GroupLayout(footer);
+        footer.setLayout(footerLayout);
+        footerLayout.setHorizontalGroup(
+            footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1229, Short.MAX_VALUE)
+        );
+        footerLayout.setVerticalGroup(
+            footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(footer, java.awt.BorderLayout.PAGE_END);
+
+        jPanel6.setLayout(new java.awt.BorderLayout());
+
+        javax.swing.GroupLayout leftSideLayout = new javax.swing.GroupLayout(leftSide);
+        leftSide.setLayout(leftSideLayout);
+        leftSideLayout.setHorizontalGroup(
+            leftSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        leftSideLayout.setVerticalGroup(
+            leftSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 552, Short.MAX_VALUE)
+        );
+
+        jPanel6.add(leftSide, java.awt.BorderLayout.LINE_START);
+
+        bodyArea.setLayout(new java.awt.BorderLayout());
+
+        emprestimoArea.setLayout(new java.awt.BorderLayout());
+
+        admLogin.setBackground(new java.awt.Color(250, 250, 250));
+
+        btnAdmLogin.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnAdmLogin.setText("Acessar");
+        btnAdmLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdmLoginActionPerformed(evt);
+            }
+        });
+
+        titleAdm.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        titleAdm.setText("Administrativo");
+
+        javax.swing.GroupLayout admLoginLayout = new javax.swing.GroupLayout(admLogin);
+        admLogin.setLayout(admLoginLayout);
+        admLoginLayout.setHorizontalGroup(
+            admLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, admLoginLayout.createSequentialGroup()
+                .addContainerGap(207, Short.MAX_VALUE)
+                .addComponent(titleAdm)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAdmLogin)
+                .addContainerGap())
+        );
+        admLoginLayout.setVerticalGroup(
+            admLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(admLoginLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(admLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdmLogin)
+                    .addComponent(titleAdm))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+
+        emprestimoArea.add(admLogin, java.awt.BorderLayout.PAGE_START);
+
+        emprestimoForm.setBackground(new java.awt.Color(250, 250, 250));
+
+        titleLogin.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        titleLogin.setText("EMPRESTIMO");
+
+        labelArmario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        labelArmario.setText("Armário");
+
+        labelRa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        labelRa.setText("RA:");
+
+        btnEmprestar.setBackground(new java.awt.Color(153, 255, 153));
+        btnEmprestar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnEmprestar.setText("Emprestar");
+
+        btnDevolver.setBackground(new java.awt.Color(153, 153, 255));
+        btnDevolver.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnDevolver.setText("Devolver");
+
+        labelSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        labelSenha.setText("Senha:");
+
+        javax.swing.GroupLayout emprestimoFormLayout = new javax.swing.GroupLayout(emprestimoForm);
+        emprestimoForm.setLayout(emprestimoFormLayout);
+        emprestimoFormLayout.setHorizontalGroup(
+            emprestimoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(emprestimoFormLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(emprestimoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtArmario)
+                    .addComponent(txtSenha)
+                    .addGroup(emprestimoFormLayout.createSequentialGroup()
+                        .addGroup(emprestimoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(titleLogin)
+                            .addComponent(labelArmario)
+                            .addComponent(labelRa)
+                            .addComponent(btnEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(btnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(emprestimoFormLayout.createSequentialGroup()
+                        .addComponent(labelSenha)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtRa))
+                .addContainerGap())
+        );
+        emprestimoFormLayout.setVerticalGroup(
+            emprestimoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(emprestimoFormLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titleLogin)
+                .addGap(52, 52, 52)
+                .addComponent(labelArmario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtChave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jLabel2)
+                .addComponent(txtArmario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelRa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtRa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(labelSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addGroup(formEmprestimoUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addGap(59, 59, 59)
+                .addGroup(emprestimoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnDevolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
-        adm.setText("Administrativo");
+        emprestimoArea.add(emprestimoForm, java.awt.BorderLayout.CENTER);
 
-        jButton3.setText("Acessar");
-        jButton3.setFocusPainted(false);
-        jButton3.setFocusable(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        bodyArea.add(emprestimoArea, java.awt.BorderLayout.LINE_END);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(formEmprestimoUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(197, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(adm)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addGap(17, 17, 17))
+        imgArea.setBackground(new java.awt.Color(250, 250, 250));
+
+        javax.swing.GroupLayout imgAreaLayout = new javax.swing.GroupLayout(imgArea);
+        imgArea.setLayout(imgAreaLayout);
+        imgAreaLayout.setHorizontalGroup(
+            imgAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1029, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(adm)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(formEmprestimoUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+        imgAreaLayout.setVerticalGroup(
+            imgAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 552, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(12, 12, 12)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        bodyArea.add(imgArea, java.awt.BorderLayout.CENTER);
 
-        imgLabel.setIcon(new javax.swing.ImageIcon("E:\\Projetos\\armario_biblioteca\\armario_biblioteca\\src\\main\\java\\br\\com\\mjc\\Assets\\img.png")); // NOI18N
+        jPanel6.add(bodyArea, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(228, 228, 228)
-                .addComponent(imgLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(imgLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel6, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAdmLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmLoginActionPerformed
+        new AdmLoginUI().setVisible(true);
+    }//GEN-LAST:event_btnAdmLoginActionPerformed
+
     private void initComplements(){
         this.setLocationRelativeTo(null);
     }
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String senha = new String(txtSenha.getPassword());
-        if (!EmprestimoController.emprestar(txtChave.getText(), txtRa.getText(), senha).equals("Emprestimo realizado com sucesso!")) {
-            JOptionPane.showMessageDialog(null, EmprestimoController.emprestar(txtChave.getText(), txtRa.getText(), senha), "Erro!", JOptionPane.ERROR_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(null, EmprestimoController.emprestar(txtChave.getText(), txtRa.getText(), senha), "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
-        }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
-        
-    }//GEN-LAST:event_txtSenhaActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new AdmLoginUI().setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel adm;
-    private javax.swing.JPanel formEmprestimoUI;
-    private javax.swing.JLabel imgLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField txtChave;
+    private javax.swing.JPanel admLogin;
+    private javax.swing.JPanel bodyArea;
+    private javax.swing.JButton btnAdmLogin;
+    private javax.swing.JButton btnDevolver;
+    private javax.swing.JButton btnEmprestar;
+    private javax.swing.JPanel emprestimoArea;
+    private javax.swing.JPanel emprestimoForm;
+    private javax.swing.JPanel footer;
+    private javax.swing.JPanel imgArea;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel labelArmario;
+    private javax.swing.JLabel labelRa;
+    private javax.swing.JLabel labelSenha;
+    private javax.swing.JPanel leftSide;
+    private javax.swing.JPanel rigthSide;
+    private javax.swing.JLabel titleAdm;
+    private javax.swing.JLabel titleLogin;
+    private javax.swing.JPanel top;
+    private javax.swing.JTextField txtArmario;
     private javax.swing.JTextField txtRa;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
