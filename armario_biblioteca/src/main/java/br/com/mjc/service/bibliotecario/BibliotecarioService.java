@@ -10,6 +10,8 @@ public interface BibliotecarioService {
 
     List<Bibliotecario> listar();
 
+    List<Bibliotecario> listarDesativados();
+
     InfoDTO cadastar(BibliotecarioDTO bibliotecarioDTO);
 
     InfoDTO alterar(BibliotecarioDTO bibliotecarioDTO);
@@ -19,4 +21,6 @@ public interface BibliotecarioService {
     InfoDTO buscarPorId(Long id);
 
     BibliotecarioDTO buscarPorSiape(String siape);
+
+    InfoDTO excluirLogica(BibliotecarioDTO bibliotecarioDTO);
 }

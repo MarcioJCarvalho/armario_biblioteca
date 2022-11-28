@@ -1,6 +1,5 @@
 package br.com.mjc.dao.bibliotecario;
 
-import br.com.mjc.dto.BibliotecarioDTO;
 import br.com.mjc.dto.InfoDTO;
 import br.com.mjc.enums.Status;
 import br.com.mjc.model.Bibliotecario;
@@ -8,6 +7,7 @@ import br.com.mjc.model.Bibliotecario;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.ArrayList;
@@ -50,44 +50,25 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
 
     @Override
     public InfoDTO alterar(Bibliotecario bibliotecario) {
-        ///TODO verificar futuramente como validar se os dados não são de outro usuario (talvez se o usuario retornado for o mesmo id e cpf não é duplicidade)
-//        infoDTO = verificarSeJaExiste(bibliotecario);
-//        if (!infoDTO.getStatus().equals(Status.INVALIDO)){
-//            EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
-//            EntityManager em = emf.createEntityManager();
-//            try {
-//                em.getTransaction().begin();
-//                em.merge(bibliotecario);
-//                em.getTransaction().commit();
-//                em.close();
-//                infoDTO.setMensagem("Bibliotecário alterado com sucesso!");
-//                infoDTO.setStatus(Status.SUCESSO);
-//            } catch (Exception ex) {
-//                ex.printStackTrace();
-//                em.getTransaction().rollback();
-//                em.close();
-//                infoDTO.setMensagem("Houve um problema ao tentar alterar o bibliotecário!");
-//                infoDTO.setStatus(Status.ERRO);
-//            }
-//        }
-
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.merge(bibliotecario);
-            em.getTransaction().commit();
-            em.close();
-            infoDTO.setMensagem("Bibliotecário alterado com sucesso!");
-            infoDTO.setStatus(Status.SUCESSO);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            em.getTransaction().rollback();
-            em.close();
-            infoDTO.setMensagem("Houve um problema ao tentar alterar o bibliotecário!");
-            infoDTO.setStatus(Status.ERRO);
+        infoDTO = verificarSeJaExiste(bibliotecario);
+        if (!infoDTO.getStatus().equals(Status.INVALIDO)){
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
+            EntityManager em = emf.createEntityManager();
+            try {
+                em.getTransaction().begin();
+                em.merge(bibliotecario);
+                em.getTransaction().commit();
+                em.close();
+                infoDTO.setMensagem("Bibliotecário alterado com sucesso!");
+                infoDTO.setStatus(Status.SUCESSO);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                em.getTransaction().rollback();
+                em.close();
+                infoDTO.setMensagem("Houve um problema ao tentar alterar o bibliotecário!");
+                infoDTO.setStatus(Status.ERRO);
+            }
         }
-
         return infoDTO;
     }
 
@@ -96,15 +77,35 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
         List<Bibliotecario> bibliotecarioList = new ArrayList<>();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
         EntityManager em = emf.createEntityManager();
+
         try {
             em.getTransaction().begin();
-            CriteriaBuilder builder = em.getCriteriaBuilder();
-            CriteriaQuery<Bibliotecario> criteriaQuery = builder.createQuery(Bibliotecario.class);
-            criteriaQuery.from(Bibliotecario.class);
-            bibliotecarioList = em.createQuery(criteriaQuery).getResultList();
+            Query consulta = em.createQuery("SELECT DISTINCT b from Bibliotecario b WHERE b.ativo = true");
+            bibliotecarioList = consulta.getResultList();
             em.getTransaction().commit();
             em.close();
-        } catch (Exception ex) {
+        } catch (Exception ex){
+            ex.printStackTrace();
+            em.close();
+            infoDTO.setMensagem("Houve um problema ao tentar listar os bibliotecários!");
+            infoDTO.setStatus(Status.ERRO);
+        }
+        return bibliotecarioList;
+    }
+
+    @Override
+    public List<Bibliotecario> listarDesativados() {
+        List<Bibliotecario> bibliotecarioList = new ArrayList<>();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Query consulta = em.createQuery("SELECT DISTINCT b from Bibliotecario b WHERE b.ativo = false");
+            bibliotecarioList = consulta.getResultList();
+            em.getTransaction().commit();
+            em.close();
+        } catch (Exception ex){
             ex.printStackTrace();
             em.close();
             infoDTO.setMensagem("Houve um problema ao tentar listar os bibliotecários!");
@@ -134,6 +135,28 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
         return bibliotecario;
     }
 
+    @Override
+    public InfoDTO excluirLogica(Bibliotecario bibliotecario) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.merge(bibliotecario);
+            em.getTransaction().commit();
+            em.close();
+            infoDTO.setMensagem("Bibliotecário desativado com sucesso!");
+            infoDTO.setStatus(Status.SUCESSO);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            em.getTransaction().rollback();
+            em.close();
+            infoDTO.setMensagem("Houve um problema ao tentar desativar o bibliotecário!");
+            infoDTO.setStatus(Status.ERRO);
+        }
+        return infoDTO;
+    }
+
     private InfoDTO verificarSeJaExiste(Bibliotecario bibliotecario) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
         EntityManager em = emf.createEntityManager();
@@ -145,10 +168,17 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
                 .getResultList();
         em.getTransaction().commit();
         if (cpfJaExiste != null && cpfJaExiste.size() > 0) {
-            infoDTO.setMensagem("Já existe um bibliotecário com esse CPF no sistema!\n");
-            infoDTO.setStatus(Status.INVALIDO);
-            em.close();
-            return infoDTO;
+            cpfJaExiste.forEach(usuarioId ->{
+                if (!usuarioId.getId().equals(bibliotecario.getId())){
+                    infoDTO.setMensagem("Já existe um bibliotecário com esse CPF no sistema!\n");
+                    infoDTO.setStatus(Status.INVALIDO);
+                    em.close();
+                }
+            });
+
+            if (infoDTO.getStatus() != null){
+                return infoDTO;
+            }
         }
 
         em.getTransaction().begin();
@@ -158,10 +188,17 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
                 .getResultList();
         em.getTransaction().commit();
         if (emailJaExiste != null && emailJaExiste.size() > 0) {
-            infoDTO.setMensagem("Já existe um bibliotecário com esse e-mail no sistema!\n");
-            infoDTO.setStatus(Status.INVALIDO);
-            em.close();
-            return infoDTO;
+            emailJaExiste.forEach(usuarioId ->{
+                if (!usuarioId.getId().equals(bibliotecario.getId())){
+                    infoDTO.setMensagem("Já existe um bibliotecário com esse e-mail no sistema!\n");
+                    infoDTO.setStatus(Status.INVALIDO);
+                    em.close();
+                }
+            });
+
+            if (infoDTO.getStatus() != null){
+                return infoDTO;
+            }
         }
 
         em.getTransaction().begin();
@@ -171,10 +208,17 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
                 .getResultList();
         em.getTransaction().commit();
         if (siapeJaExiste != null && siapeJaExiste.size() > 0) {
-            infoDTO.setMensagem("Já existe um bibliotecário com esse siape no sistema!\n");
-            infoDTO.setStatus(Status.INVALIDO);
-            em.close();
-            return infoDTO;
+            siapeJaExiste.forEach(usuarioId ->{
+                if (!usuarioId.getId().equals(bibliotecario.getId())){
+                    infoDTO.setMensagem("Já existe um bibliotecário com esse siape no sistema!\n");
+                    infoDTO.setStatus(Status.INVALIDO);
+                    em.close();
+                }
+            });
+
+            if (infoDTO.getStatus() != null){
+                return infoDTO;
+            }
         }
 
         infoDTO.setStatus(Status.OK);

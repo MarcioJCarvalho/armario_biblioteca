@@ -11,7 +11,10 @@ public interface BibliotecarioDAO{
 
     InfoDTO alterar(Bibliotecario bibliotecario);
     List<Bibliotecario> listar();
+    List<Bibliotecario> listarDesativados();
 
     Bibliotecario buscarPorSiape(String siape);
+
+    InfoDTO excluirLogica(Bibliotecario bibliotecario);
 
 }

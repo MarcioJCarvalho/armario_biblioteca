@@ -19,6 +19,7 @@ public class AdmLoginUI extends javax.swing.JFrame {
 
     private void initComplements(){
         this.setLocationRelativeTo(null);
+        this.progBar.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -32,9 +33,10 @@ public class AdmLoginUI extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        progBar = new javax.swing.JProgressBar();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(247, 247, 247));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         titleLogin.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 14)); // NOI18N
         titleLogin.setText("LOGIN");
@@ -59,13 +61,16 @@ public class AdmLoginUI extends javax.swing.JFrame {
             }
         });
 
+        progBar.setStringPainted(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(progBar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -95,7 +100,9 @@ public class AdmLoginUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
                     .addComponent(btnCancelar))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(progBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,10 +116,7 @@ public class AdmLoginUI extends javax.swing.JFrame {
         adminDTO.setEmail(txtUsuario.getText());
 
         infoDTO = adminController.logar(adminDTO);
-
         if(infoDTO.getStatus().equals(Status.SUCESSO)){
-            new MainMenuUI().setVisible(false);
-            new AdmLoginUI().setVisible(false);
             new MenuAdministrativoUI().setVisible(true);
             dispose();
         } else {
@@ -132,6 +136,7 @@ public class AdmLoginUI extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel labelSenha;
     private javax.swing.JLabel labelUsuario;
+    private javax.swing.JProgressBar progBar;
     private javax.swing.JLabel titleLogin;
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtUsuario;

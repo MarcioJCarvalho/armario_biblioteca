@@ -222,12 +222,14 @@
                                 <DimensionLayout dim="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="checkBoxListarDesativados" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
                                           <Component id="radioNome" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Component id="radioSiape" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="282" max="-2" attributes="0"/>
-                                          <Component id="txtFiltro" pref="209" max="32767" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="txtFiltro" pref="167" max="32767" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
@@ -241,6 +243,7 @@
                                           <Component id="txtFiltro" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="radioNome" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="radioSiape" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="checkBoxListarDesativados" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -267,6 +270,14 @@
                                   </Properties>
                                   <Events>
                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
+                                  </Events>
+                                </Component>
+                                <Component class="javax.swing.JCheckBox" name="checkBoxListarDesativados">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Listar desativados"/>
+                                  </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxListarDesativadosActionPerformed"/>
                                   </Events>
                                 </Component>
                               </SubComponents>
@@ -356,8 +367,8 @@
                         <Container class="javax.swing.JPanel" name="jPanel7">
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                              <JTabbedPaneConstraints tabName="Cadastro / Edi&#xe7;&#xe3;o">
-                                <Property name="tabTitle" type="java.lang.String" value="Cadastro / Edi&#xe7;&#xe3;o"/>
+                              <JTabbedPaneConstraints tabName="Cadastro">
+                                <Property name="tabTitle" type="java.lang.String" value="Cadastro"/>
                               </JTabbedPaneConstraints>
                             </Constraint>
                           </Constraints>
@@ -532,19 +543,27 @@
                                                           <Component id="msgSiape" pref="130" max="32767" attributes="0"/>
                                                           <Component id="txtSiape" alignment="0" max="32767" attributes="0"/>
                                                       </Group>
-                                                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="txtSenha" alignment="1" max="32767" attributes="0"/>
-                                                          <Component id="txtConfirmacaoSenha" max="32767" attributes="0"/>
                                                           <Group type="102" attributes="0">
+                                                              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                                  <Component id="labelSenha" min="-2" max="-2" attributes="0"/>
-                                                                  <Component id="labelConfirmarSenha" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                                  <Component id="txtSenha" alignment="1" max="32767" attributes="0"/>
+                                                                  <Component id="txtConfirmacaoSenha" max="32767" attributes="0"/>
+                                                                  <Group type="102" attributes="0">
+                                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                                          <Component id="labelSenha" min="-2" max="-2" attributes="0"/>
+                                                                          <Component id="labelConfirmarSenha" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                                      </Group>
+                                                                      <EmptySpace min="0" pref="97" max="32767" attributes="0"/>
+                                                                  </Group>
+                                                                  <Component id="msgConfirmacaoSenha" alignment="0" max="32767" attributes="0"/>
+                                                                  <Component id="msgSenha" alignment="0" max="32767" attributes="0"/>
                                                               </Group>
-                                                              <EmptySpace min="0" pref="107" max="32767" attributes="0"/>
                                                           </Group>
-                                                          <Component id="msgConfirmacaoSenha" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="msgSenha" alignment="0" max="32767" attributes="0"/>
+                                                          <Group type="102" alignment="1" attributes="0">
+                                                              <EmptySpace max="32767" attributes="0"/>
+                                                              <Component id="checkBoxAvtivatDesativarBibliotecario" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
                                                       </Group>
                                                   </Group>
                                                   <Component id="msgEmail" alignment="0" max="32767" attributes="0"/>
@@ -571,7 +590,10 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="titleDadosBibliotecario" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="titleDadosBibliotecario" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="checkBoxAvtivatDesativarBibliotecario" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="labelNome" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -633,7 +655,7 @@
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="msgTelefone" min="-2" pref="10" max="-2" attributes="0"/>
-                                              <EmptySpace pref="41" max="32767" attributes="0"/>
+                                              <EmptySpace pref="42" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -810,6 +832,14 @@
                                           <Color blue="0" green="0" red="ff" type="rgb"/>
                                         </Property>
                                       </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JCheckBox" name="checkBoxAvtivatDesativarBibliotecario">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="Desativar"/>
+                                      </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxAvtivatDesativarBibliotecarioActionPerformed"/>
+                                      </Events>
                                     </Component>
                                   </SubComponents>
                                 </Container>

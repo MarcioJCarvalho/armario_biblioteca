@@ -1,7 +1,8 @@
 package br.com.mjc.view;
 import br.com.mjc.view.login.AdmLoginUI;
 import br.com.mjc.controller.EmprestimoController;
-import javax.swing.JOptionPane;
+
+import javax.swing.*;
 
 public class MainMenuUI extends javax.swing.JFrame {
     
@@ -49,12 +50,6 @@ public class MainMenuUI extends javax.swing.JFrame {
         formEmprestimoUI.setName(""); // NOI18N
 
         jLabel1.setText("Nº Chave: ");
-
-        txtChave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtChaveActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("RA:");
 
@@ -220,10 +215,6 @@ public class MainMenuUI extends javax.swing.JFrame {
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         
     }//GEN-LAST:event_txtSenhaActionPerformed
-
-    private void txtChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtChaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtChaveActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new AdmLoginUI().setVisible(true);

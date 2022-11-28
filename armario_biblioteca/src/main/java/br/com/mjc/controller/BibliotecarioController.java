@@ -22,8 +22,16 @@ public class BibliotecarioController {
         return bibliotecarioServiceImpl.alterar(bibliotecarioDTO);
     }
 
+    public InfoDTO excluirLogica(BibliotecarioDTO bibliotecarioDTO){
+        return bibliotecarioServiceImpl.excluirLogica(bibliotecarioDTO);
+    }
+
     public List<Bibliotecario> listarTodos(){
         return bibliotecarioServiceImpl.listar();
+    }
+
+    public List<Bibliotecario> listarDesativados(){
+        return bibliotecarioServiceImpl.listarDesativados();
     }
 
     public BibliotecarioDTO buscarPorSiape(String siape){

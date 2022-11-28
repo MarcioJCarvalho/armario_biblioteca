@@ -24,6 +24,11 @@ public class BibliotecarioServiceImpl implements BibliotecarioService{
     }
 
     @Override
+    public List<Bibliotecario> listarDesativados() {
+        return bibliotecarioDAOImpl.listarDesativados();
+    }
+
+    @Override
     public InfoDTO cadastar(BibliotecarioDTO bibliotecarioDTO) {
         Bibliotecario bibliotecario = new Bibliotecario();
         bibliotecario.setNome(bibliotecarioDTO.getNome());
@@ -72,5 +77,20 @@ public class BibliotecarioServiceImpl implements BibliotecarioService{
         bibliotecarioDTO.setTelefone(bibliotecario.getTelefone());
         bibliotecarioDTO.setDataCriacao(bibliotecario.getDataCriacao());
         return bibliotecarioDTO;
+    }
+
+    @Override
+    public InfoDTO excluirLogica(BibliotecarioDTO bibliotecarioDTO) {
+        Bibliotecario bibliotecario = new Bibliotecario();
+        bibliotecario.setId(bibliotecarioDTO.getId());
+        bibliotecario.setNome(bibliotecarioDTO.getNome());
+        bibliotecario.setCpf(bibliotecarioDTO.getCpf());
+        bibliotecario.setSiape(bibliotecarioDTO.getSiape());
+        bibliotecario.setSenha(bibliotecarioDTO.getSenha());
+        bibliotecario.setEmail(bibliotecarioDTO.getEmail());
+        bibliotecario.setTelefone(Tratamento.limparNumero(bibliotecarioDTO.getTelefone()));
+        bibliotecario.setDataCriacao(bibliotecarioDTO.getDataCriacao());
+        bibliotecario.setAtivo(false);
+        return bibliotecarioDAOImpl.excluirLogica(bibliotecario);
     }
 }
