@@ -17,4 +17,6 @@ public interface BibliotecarioDAO{
 
     InfoDTO excluirLogica(Bibliotecario bibliotecario);
 
+    InfoDTO ativarLogica(Bibliotecario bibliotecario);
+
 }

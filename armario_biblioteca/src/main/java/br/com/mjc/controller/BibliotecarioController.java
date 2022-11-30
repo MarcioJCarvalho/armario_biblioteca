@@ -26,6 +26,10 @@ public class BibliotecarioController {
         return bibliotecarioServiceImpl.excluirLogica(bibliotecarioDTO);
     }
 
+    public InfoDTO ativarLogica(BibliotecarioDTO bibliotecarioDTO){
+        return bibliotecarioServiceImpl.ativarLogica(bibliotecarioDTO);
+    }
+
     public List<Bibliotecario> listarTodos(){
         return bibliotecarioServiceImpl.listar();
     }

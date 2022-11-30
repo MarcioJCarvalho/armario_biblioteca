@@ -205,6 +205,12 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
 
         bodyBibliotecario.setLayout(new java.awt.BorderLayout());
 
+        tabBibliotecario.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tabBibliotecarioStateChanged(evt);
+            }
+        });
+
         jPanel6.setLayout(new java.awt.BorderLayout());
 
         radioNome.setText("Nome");
@@ -935,7 +941,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         checkBoxAvtivatDesativarBibliotecario.setEnabled(true);
         checkBoxAvtivatDesativarBibliotecario.setVisible(false);
         for (JTextField form : formBibliotecario) {
-            if (!form.isEnabled()){
+            if (!form.isEnabled()) {
                 form.setEnabled(true);
             }
         }
@@ -977,10 +983,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         String siape = (String) modeloColunasTabela.getValueAt(index, 2);
         BibliotecarioDTO bibliotecarioDTOEdicao = new BibliotecarioDTO();
         bibliotecarioDTOEdicao = bibliotecarioController.buscarPorSiape(siape);
-        //TODO parei aqui
-//        if (bibliotecarioDTOEdicao.getAtivo().equals(true)){
-//
-//        }
+
         bibliotecarioDTO.setId(bibliotecarioDTOEdicao.getId());
         bibliotecarioDTO.setDataCriacao(bibliotecarioDTOEdicao.getDataCriacao());
         txtNome.setText(bibliotecarioDTOEdicao.getNome());
@@ -989,20 +992,28 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
         txtSenha.setText(bibliotecarioDTOEdicao.getSenha());
         txtEmail.setText(bibliotecarioDTOEdicao.getEmail());
         txtTelefone.setText(Formato.telefone(bibliotecarioDTOEdicao.getTelefone()));
+
         tabBibliotecario.setTitleAt(1, "Edição");
         tabBibliotecario.setSelectedIndex(1);
         checkBoxAvtivatDesativarBibliotecario.setVisible(true);
         checkBoxAvtivatDesativarBibliotecario.setSelected(false);
-        for (JTextField form : formBibliotecario) {
-            if (!form.isEnabled()){
+
+        if (checkBoxListarDesativados.isSelected()) {
+            checkBoxAvtivatDesativarBibliotecario.setText("Ativar");
+            for (JTextField form : formBibliotecario) {
+                form.setEnabled(false);
+            }
+        } else {
+            for (JTextField form : formBibliotecario) {
                 form.setEnabled(true);
             }
         }
+
     }//GEN-LAST:event_tabListaBibliotecariosMouseClicked
 
     private void checkBoxAvtivatDesativarBibliotecarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxAvtivatDesativarBibliotecarioActionPerformed
-        if (checkBoxAvtivatDesativarBibliotecario.getText().equals("Desativar")){
-            if (checkBoxAvtivatDesativarBibliotecario.isVisible() && checkBoxAvtivatDesativarBibliotecario.isSelected()){
+        if (checkBoxAvtivatDesativarBibliotecario.getText().equals("Desativar")) {
+            if (checkBoxAvtivatDesativarBibliotecario.isVisible() && checkBoxAvtivatDesativarBibliotecario.isSelected()) {
                 int resposta = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja desativar o bibliotecário?", "Aviso!", JOptionPane.WARNING_MESSAGE);
                 if (resposta == JOptionPane.YES_OPTION) {
                     for (JTextField form : formBibliotecario) {
@@ -1016,7 +1027,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
                     bibliotecarioDTO.setEmail(txtEmail.getText());
                     bibliotecarioDTO.setTelefone(Tratamento.limparNumero(txtTelefone.getText()));
                     infoDTO = bibliotecarioController.excluirLogica(bibliotecarioDTO);
-                    if (infoDTO.getStatus().equals(Status.SUCESSO)){
+                    if (infoDTO.getStatus().equals(Status.SUCESSO)) {
                         JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.INFORMATION_MESSAGE);
                         for (JTextField form : formBibliotecario) {
                             form.setEnabled(true);
@@ -1025,6 +1036,7 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
                         listarBibliotecarios();
                         tabBibliotecario.setTitleAt(1, "Cadastro");
                         tabBibliotecario.setSelectedIndex(0);
+                        checkBoxListarDesativados.setSelected(false);
                     } else {
                         JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.ERROR_MESSAGE);
                     }
@@ -1036,15 +1048,49 @@ public class MenuAdministrativoUI extends javax.swing.JFrame {
             }
             checkBoxAvtivatDesativarBibliotecario.setSelected(false);
         }
+
+        if (checkBoxAvtivatDesativarBibliotecario.getText().equals("Ativar")){
+            String senha = new String(txtSenha.getPassword());
+            bibliotecarioDTO.setNome(txtNome.getText());
+            bibliotecarioDTO.setCpf(txtCpf.getText());
+            bibliotecarioDTO.setSiape(txtSiape.getText());
+            bibliotecarioDTO.setSenha(senha);
+            bibliotecarioDTO.setEmail(txtEmail.getText());
+            bibliotecarioDTO.setTelefone(Tratamento.limparNumero(txtTelefone.getText()));
+            infoDTO = bibliotecarioController.ativarLogica(bibliotecarioDTO);
+            if (infoDTO.getStatus().equals(Status.SUCESSO)) {
+                JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.INFORMATION_MESSAGE);
+                for (JTextField form : formBibliotecario) {
+                    form.setEnabled(true);
+                }
+
+                checkBoxAvtivatDesativarBibliotecario.setText("Desativar");
+                if (checkBoxAvtivatDesativarBibliotecario.isSelected()){
+                    checkBoxAvtivatDesativarBibliotecario.setSelected(false);
+                }
+//                tabBibliotecario.setTitleAt(1, "Cadastro");
+//                tabBibliotecario.setSelectedIndex(0);
+            } else {
+                JOptionPane.showMessageDialog(null, infoDTO.getMensagem(), infoDTO.getStatus().toString(), JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
     }//GEN-LAST:event_checkBoxAvtivatDesativarBibliotecarioActionPerformed
 
     private void checkBoxListarDesativadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxListarDesativadosActionPerformed
-        if (checkBoxListarDesativados.isVisible() && checkBoxListarDesativados.isSelected()){
+        if (checkBoxListarDesativados.isVisible() && checkBoxListarDesativados.isSelected()) {
             listarBibliotecariosDesativados();
         } else {
             listarBibliotecarios();
         }
     }//GEN-LAST:event_checkBoxListarDesativadosActionPerformed
+
+    private void tabBibliotecarioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabBibliotecarioStateChanged
+        String tituloAba = tabBibliotecario.getTitleAt(1);
+    if (tituloAba.equals("Editar")){
+        String teste = "Aqui";
+    }
+    }//GEN-LAST:event_tabBibliotecarioStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

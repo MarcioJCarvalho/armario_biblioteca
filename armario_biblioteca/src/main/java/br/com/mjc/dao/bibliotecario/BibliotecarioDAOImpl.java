@@ -1,5 +1,6 @@
 package br.com.mjc.dao.bibliotecario;
 
+import br.com.mjc.dto.BibliotecarioDTO;
 import br.com.mjc.dto.InfoDTO;
 import br.com.mjc.enums.Status;
 import br.com.mjc.model.Bibliotecario;
@@ -152,6 +153,28 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
             em.getTransaction().rollback();
             em.close();
             infoDTO.setMensagem("Houve um problema ao tentar desativar o bibliotecário!");
+            infoDTO.setStatus(Status.ERRO);
+        }
+        return infoDTO;
+    }
+
+    @Override
+    public InfoDTO ativarLogica(Bibliotecario bibliotecario) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia-jpa");
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.merge(bibliotecario);
+            em.getTransaction().commit();
+            em.close();
+            infoDTO.setMensagem("Bibliotecário ativado com sucesso!");
+            infoDTO.setStatus(Status.SUCESSO);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            em.getTransaction().rollback();
+            em.close();
+            infoDTO.setMensagem("Houve um problema ao tentar ativar o bibliotecário!");
             infoDTO.setStatus(Status.ERRO);
         }
         return infoDTO;

@@ -93,4 +93,19 @@ public class BibliotecarioServiceImpl implements BibliotecarioService{
         bibliotecario.setAtivo(false);
         return bibliotecarioDAOImpl.excluirLogica(bibliotecario);
     }
+
+    @Override
+    public InfoDTO ativarLogica(BibliotecarioDTO bibliotecarioDTO) {
+        Bibliotecario bibliotecario = new Bibliotecario();
+        bibliotecario.setId(bibliotecarioDTO.getId());
+        bibliotecario.setNome(bibliotecarioDTO.getNome());
+        bibliotecario.setCpf(bibliotecarioDTO.getCpf());
+        bibliotecario.setSiape(bibliotecarioDTO.getSiape());
+        bibliotecario.setSenha(bibliotecarioDTO.getSenha());
+        bibliotecario.setEmail(bibliotecarioDTO.getEmail());
+        bibliotecario.setTelefone(Tratamento.limparNumero(bibliotecarioDTO.getTelefone()));
+        bibliotecario.setDataCriacao(bibliotecarioDTO.getDataCriacao());
+        bibliotecario.setAtivo(true);
+        return bibliotecarioDAOImpl.ativarLogica(bibliotecario);
+    }
 }

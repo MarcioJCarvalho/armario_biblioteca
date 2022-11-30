@@ -176,7 +176,7 @@ public class MainMenuUI extends javax.swing.JFrame {
                             .addComponent(labelArmario)
                             .addComponent(labelRa)
                             .addComponent(btnEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(emprestimoFormLayout.createSequentialGroup()
                         .addComponent(labelSenha)
@@ -187,7 +187,7 @@ public class MainMenuUI extends javax.swing.JFrame {
         emprestimoFormLayout.setVerticalGroup(
             emprestimoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(emprestimoFormLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(81, 81, 81)
                 .addComponent(titleLogin)
                 .addGap(52, 52, 52)
                 .addComponent(labelArmario)
@@ -205,7 +205,7 @@ public class MainMenuUI extends javax.swing.JFrame {
                 .addGroup(emprestimoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnDevolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         emprestimoArea.add(emprestimoForm, java.awt.BorderLayout.CENTER);
@@ -218,7 +218,7 @@ public class MainMenuUI extends javax.swing.JFrame {
         imgArea.setLayout(imgAreaLayout);
         imgAreaLayout.setHorizontalGroup(
             imgAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1029, Short.MAX_VALUE)
+            .addGap(0, 652, Short.MAX_VALUE)
         );
         imgAreaLayout.setVerticalGroup(
             imgAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

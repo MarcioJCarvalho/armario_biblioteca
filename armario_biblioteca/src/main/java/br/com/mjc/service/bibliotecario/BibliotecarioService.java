@@ -23,4 +23,6 @@ public interface BibliotecarioService {
     BibliotecarioDTO buscarPorSiape(String siape);
 
     InfoDTO excluirLogica(BibliotecarioDTO bibliotecarioDTO);
+
+    InfoDTO ativarLogica(BibliotecarioDTO bibliotecarioDTO);
 }
